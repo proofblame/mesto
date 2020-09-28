@@ -54,8 +54,8 @@
 @import url(../blocks/footer/__section/__info/footer__info.css);
 
 /* --в случае аварии расскомментировать-- */
-* {
+/* * {
     outline-width: 1px;
     outline-style: solid;
     outline-color: red;
-}
+} */
