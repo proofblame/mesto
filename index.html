@@ -28,12 +28,17 @@
             </div>
             <button class="profile__add-button buttons"></button>
             <section class="popup">
-                <form action="" class="popup__container">
-                    <p class="popup__heading">Редактировать профиль</p>
-                    <input type="text" value="Жак-Ив Кусто" class="popup__text">
-                    <input type="text" value="Исследователь океана" class="popup__text">
-                    <input type="submit" value="Сохранить">
-                </form>
+                <div class="popup__container">
+                    <form action="" class="popup__form">
+                        <p class="popup__heading">Редактировать профиль</p>
+                        <fieldset class="popup__fields">
+                            <input type="text" value="Жак-Ив Кусто" class="popup__text">
+                            <input type="text" value="Исследователь океана" class="popup__text">
+                        </fieldset>
+                        <input type="submit" value="Сохранить" class="popup__save-button">
+                    </form>
+                    <input type="submit" value="" class="popup__close-button buttons">
+                </div>
             </section>
         </section>
 
