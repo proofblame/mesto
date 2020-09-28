@@ -1,0 +1,15 @@
+.border-bottom {
+    box-sizing: border-box;
+    border-bottom: 1px solid rgba(84, 84, 84, .3);
+    margin: 0 auto;
+    margin-bottom: 40px;
+    max-width: 882px;
+}
+
+@media screen and (max-width: 882px) {
+    .border-bottom {
+        margin-bottom: 42px;
+        max-width: 100%;
+
+    }
+}

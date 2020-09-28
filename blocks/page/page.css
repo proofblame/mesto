@@ -1,13 +1,12 @@
 .page {
     background-color: #000;
     margin: 45px auto 60px;
-    max-width: 882px;
     font-family: Inter;
     font-style: normal;
 }
 
 @media screen and (max-width: 920px) {
     .page {
-        max-width: calc(100vw - 19px * 2);
+        margin: 28px auto 36px;
     }
 }
