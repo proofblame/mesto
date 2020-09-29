@@ -30,19 +30,6 @@
             <button class="profile__add-button buttons"></button>
         </section>
 
-        <section class="popup popup_opened">
-            <div class="popup__container">
-                <form action="" class="popup__form">
-                    <p class="popup__heading">Редактировать профиль</p>
-                    <fieldset class="popup__fields">
-                        <input type="text" value="Жак-Ив Кусто" class="popup__text">
-                        <input type="text" value="Исследователь океана" class="popup__text">
-                    </fieldset>
-                    <input type="submit" value="Сохранить" class="popup__save-button">
-                </form>
-                <input type="submit" value="" class="popup__close-button buttons">
-            </div>
-        </section>
 
         <section class="elements">
             <ul class="elements__list">
@@ -126,10 +113,23 @@
 
     </main>
 
+    <section class="popup">
+        <div class="popup__container">
+            <form action="" class="popup__form">
+                <p class="popup__heading">Редактировать профиль</p>
+                <fieldset class="popup__fields">
+                    <input type="text" value="Жак-Ив Кусто" class="popup__name-input popup__text">
+                    <input type="text" value="Исследователь океана" class="popup__job-input popup__text">
+                </fieldset>
+                <input type="submit" value="Сохранить" class="popup__save-button">
+            </form>
+            <input type="submit" value="" class="popup__close-button buttons">
+        </div>
+    </section>
     <footer class="footer section footer__section">
         <p class="footer__info">&copy 2020 Mesto Russia</p>
     </footer>
-<script src="scripts/index.js"></script>
+    <script src="scripts/index.js"></script>
 </body>
 
 </html>
