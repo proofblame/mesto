@@ -9,13 +9,6 @@
 @import url("../blocks/buttons/buttons.css");
 @import url("../blocks/border-bottom/border-bottom.css");
 
-/* @import url("../blocks/section/section.css");
-@import url("../blocks/buttons/buttons.css");
-@import url("../blocks/card/card.css");
-    @import url("../blocks/card/__body/card__body.css");   
-@import url("../blocks/border-bottom/border-bottom.css"); */
-
-
 /* -- root -- */
 @import url("../blocks/root/root.css");
 
@@ -43,6 +36,7 @@
 
 /* -- popup -- */
 @import url("../blocks/popup/popup.css");
+@import url("../blocks/popup/_opened/popup_opened.css");
 
 
 /* --в случае аварии расскомментировать-- */

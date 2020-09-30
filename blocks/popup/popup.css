@@ -7,7 +7,7 @@
 @import url("./__job-input/popup__job-input.css");
 @import url("./__save-button/popup__save-button.css");
 @import url("./__close-button/popup__close-button.css");
-@import url("./_opened/popup_opened.css");
+
 
 .popup {
     position: fixed;
