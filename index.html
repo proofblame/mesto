@@ -12,7 +12,7 @@
 
 
     <header class="header header__section section">
-        <img class="header__logo" src="images/logo.png" alt="Логотип Mesto Russia">
+        <img class="header__logo" src="images/logo.svg" alt="Логотип Mesto Russia">
     </header>
 
     <div class="border-bottom"></div>
@@ -23,9 +23,9 @@
             <img src="images/jacques-photo.png" alt="Портрет Жак-Ива Кусто"
                 class="profile__avatar profile__avatar_border-radius">
             <div class="profile__info">
-                <p class="profile__author">Жак-Ив Кусто</p>
+                <h1 class="profile__author section__title section__title_theme_dark section__title_size_xl">Жак-Ив Кусто</h1>
                 <button class="profile__edit-button buttons"></button>
-                <p class="profile__author-status">Исследователь океана</p>
+                <p class="profile__author-status section__subtitle section__subtitle_theme_dark section__subtitle_size_m">Исследователь океана</p>
             </div>
             <button class="profile__add-button buttons"></button>
         </section>
@@ -36,7 +36,7 @@
                     <figure class="element element__figure">
                         <img src="images/karachaevsk.png" alt="Карачаевск" class="element__image">
                         <div class="element__body">
-                            <figcaption class="element__figcaption">Карачаевск</figcaption>
+                            <figcaption class="element__figcaption section__subtitle section__subtitle_theme_light section__subtitle_size_l">Карачаевск</figcaption>
                             <button class="element__like-button buttons" type="button"></button>
                         </div>
                     </figure>
@@ -45,7 +45,7 @@
                     <figure class="element element__figure">
                         <img src="images/elbrus.png" alt="Гора Эльбрус" class="element__image">
                         <div class="element__body">
-                            <figcaption class="element__figcaption">Гора Эльбрус</figcaption>
+                            <figcaption class="element__figcaption section__subtitle section__subtitle_theme_light section__subtitle_size_l">Гора Эльбрус</figcaption>
                             <button class="element__like-button buttons" type="button"></button>
                         </div>
                     </figure>
@@ -54,7 +54,7 @@
                     <figure class="element element__figure">
                         <img src="images/dombay.png" alt="Добай" class="element__image">
                         <div class="element__body">
-                            <figcaption class="element__figcaption">Карачаевск</figcaption>
+                            <figcaption class="element__figcaption section__subtitle section__subtitle_theme_light section__subtitle_size_l">Карачаевск</figcaption>
                             <button class="element__like-button buttons" type="button"></button>
                         </div>
                     </figure>
@@ -63,7 +63,7 @@
                     <figure class="element element__figure">
                         <img src="images/elbrus.png" alt="Гора Эльбрус" class="element__image">
                         <div class="element__body">
-                            <figcaption class="element__figcaption">Гора Эльбрус</figcaption>
+                            <figcaption class="element__figcaption section__subtitle section__subtitle_theme_light section__subtitle_size_l">Гора Эльбрус</figcaption>
                             <button class="element__like-button buttons" type="button"></button>
                         </div>
                     </figure>
@@ -72,7 +72,7 @@
                     <figure class="element element__figure">
                         <img src="images/dombay.png" alt="Добай" class="element__image">
                         <div class="element__body">
-                            <figcaption class="element__figcaption">Карачаевск</figcaption>
+                            <figcaption class="element__figcaption section__subtitle section__subtitle_theme_light section__subtitle_size_l">Карачаевск</figcaption>
                             <button class="element__like-button buttons" type="button"></button>
                         </div>
                     </figure>
@@ -81,7 +81,7 @@
                     <figure class="element element__figure">
                         <img src="images/karachaevsk.png" alt="Карачаевск" class="element__image">
                         <div class="element__body">
-                            <figcaption class="element__figcaption">Карачаево-Черкессия</figcaption>
+                            <figcaption class="element__figcaption section__subtitle section__subtitle_theme_light section__subtitle_size_l">Карачаево-Черкессия</figcaption>
                             <button class="element__like-button buttons" type="button"></button>
                         </div>
                     </figure>
@@ -90,21 +90,21 @@
         </section>
     </main>
 
-    <section class="popup">
+    <section class="popup popup__section">
         <div class="popup__container">
-            <form action="" class="popup__form">
-                <p class="popup__heading">Редактировать профиль</p>
+            <form class="popup__form">
+                <p class="popup__heading section__subtitle">Редактировать профиль</p>
                 <fieldset class="popup__fields">
-                    <input type="text" value="Жак-Ив Кусто" class="popup__name-input popup__text">
-                    <input type="text" value="Исследователь океана" class="popup__job-input popup__text">
+                    <input type="text" value="Жак-Ив Кусто" class="popup__name-input popup__text  popup__text_size_s">
+                    <input type="text" value="Исследователь океана" class="popup__job-input popup__text  popup__text_size_s">
                 </fieldset>
-                <input type="submit" value="Сохранить" class="popup__save-button">
+                <input type="submit" value="Сохранить" class="popup__save-button section__text_size_m">
             </form>
             <input type="submit" value="" class="popup__close-button buttons">
         </div>
     </section>
     <footer class="footer footer__section section">
-        <p class="footer__info">&copy 2020 Mesto Russia</p>
+        <p class="section__text section__text_size_m">&copy 2020 Mesto Russia</p>
     </footer>
     <script src="scripts/index.js"></script>
 </body>

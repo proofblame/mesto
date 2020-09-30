@@ -2,7 +2,7 @@
     display: grid;
     grid-template-areas:
         "profile__author profile__edit-button"
-        "profile__author-status profile__author-status";
+        "profile__author-status .";
     gap: 0 20px;
     grid-gap: 0 20px;
 }

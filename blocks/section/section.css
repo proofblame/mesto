@@ -1,0 +1,23 @@
+@import url("./__title/section__title.css");
+@import url("./__title/_theme/section__title_theme_dark.css");
+
+@import url("./__title/_size/section__title_size_xl.css");
+@import url("./__subtitle/section__subtitle.css");
+@import url("./__subtitle/_theme/section__subtitle_theme_dark.css");
+@import url("./__subtitle/_theme//section__subtitle_theme_light.css");
+@import url("./__subtitle/_size/section__subtitle_size_l.css");
+@import url("./__subtitle/_size/section__subtitle_size_m.css");
+@import url("./__text/section__text.css");
+@import url("./__text/_size/section__text_size_m.css");
+@import url("./__text/_size/section__text_size_s.css");
+
+.section {
+    max-width: 882px;
+    margin: 0 auto;
+}
+
+@media screen and (max-width: 920px) {
+    .section {
+        max-width: calc(100vw - 19px * 2);
+    }
+}

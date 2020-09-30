@@ -1,0 +1,10 @@
+.section__title_size_xl {
+    font-size: 42px;
+    line-height: 56px;
+}
+@media screen and (max-width: 697px) {
+    .section__title_size_xl {
+        font-size: 27px;
+        text-align: right;
+    }
+}
