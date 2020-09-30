@@ -1,5 +1,5 @@
 .profile__edit-button {
-    background-image: url(../../../images/edit-button.png);
+    background-image: url("../../../images/edit-button.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: 10px;
@@ -14,5 +14,4 @@
         width: 18px;
         min-height: 18px;
     }
-
 }

@@ -8,16 +8,16 @@
     <title>Mesto</title>
 </head>
 
-<body class="root page ">
+<body class="root root__page">
 
 
-    <header class="header section header__section header_transparent-border">
-        <img src="images/logo.png" alt="Логотип Mesto Russia">
+    <header class="header header__section section">
+        <img class="header__logo" src="images/logo.png" alt="Логотип Mesto Russia">
     </header>
 
     <div class="border-bottom"></div>
 
-    <main class="content section main__section">
+    <main class="content content__section section">
 
         <section class="profile profile__section">
             <img src="images/jacques-photo.png" alt="Портрет Жак-Ива Кусто"
@@ -30,87 +30,64 @@
             <button class="profile__add-button buttons"></button>
         </section>
 
-
         <section class="elements">
             <ul class="elements__list">
-
                 <li class="elements__item">
-                    <figure class="element card">
+                    <figure class="element element__figure">
                         <img src="images/karachaevsk.png" alt="Карачаевск" class="element__image">
-                        <div class="card__body">
-                            <figcaption class="element__figcaption element__figcaption_text-decoration">Карачаевск
-                            </figcaption>
-                            <button src="" alt="" class="element__like-button buttons" type="button"><img
-                                    src="images/like.png" alt="Like-button" class="element__like-button-image"></button>
+                        <div class="element__body">
+                            <figcaption class="element__figcaption">Карачаевск</figcaption>
+                            <button class="element__like-button buttons" type="button"></button>
                         </div>
                     </figure>
                 </li>
-
                 <li class="elements__item">
-                    <figure class="element card">
+                    <figure class="element element__figure">
                         <img src="images/elbrus.png" alt="Гора Эльбрус" class="element__image">
-                        <div class="card__body">
-                            <figcaption class="element__figcaption element__figcaption_text-decoration">Гора Эльбрус
-                            </figcaption>
-                            <button src="" alt="" class="element__like-button buttons" type="button"><img
-                                    src="images/like.png" alt="Like-button" class="element__like-button-image"></button>
+                        <div class="element__body">
+                            <figcaption class="element__figcaption">Гора Эльбрус</figcaption>
+                            <button class="element__like-button buttons" type="button"></button>
                         </div>
                     </figure>
                 </li>
-
                 <li class="elements__item">
-                    <figure class="element card">
-                        <img src="images/dombay.png" alt="Домбай" class="element__image">
-                        <div class="card__body">
-                            <figcaption class="element__figcaption element__figcaption_text-decoration">Домбай
-                            </figcaption>
-                            <button src="" alt="" class="element__like-button buttons" type="button"><img
-                                    src="images/like.png" alt="Like-button" class="element__like-button-image"></button>
+                    <figure class="element element__figure">
+                        <img src="images/dombay.png" alt="Добай" class="element__image">
+                        <div class="element__body">
+                            <figcaption class="element__figcaption">Карачаевск</figcaption>
+                            <button class="element__like-button buttons" type="button"></button>
                         </div>
                     </figure>
                 </li>
-
                 <li class="elements__item">
-                    <figure class="element card">
+                    <figure class="element element__figure">
                         <img src="images/elbrus.png" alt="Гора Эльбрус" class="element__image">
-                        <div class="card__body">
-                            <figcaption class="element__figcaption element__figcaption_text-decoration">Гора Эльбрус
-                            </figcaption>
-                            <button src="" alt="" class="element__like-button buttons" type="button"><img
-                                    src="images/like.png" alt="Like-button" class="element__like-button-image"></button>
+                        <div class="element__body">
+                            <figcaption class="element__figcaption">Гора Эльбрус</figcaption>
+                            <button class="element__like-button buttons" type="button"></button>
                         </div>
                     </figure>
                 </li>
-
                 <li class="elements__item">
-                    <figure class="element card">
-                        <img src="images/dombay.png" alt="Домбай" class="element__image">
-                        <div class="card__body">
-                            <figcaption class="element__figcaption element__figcaption_text-decoration">Домбай
-                            </figcaption>
-                            <button src="" alt="" class="element__like-button buttons" type="button"><img
-                                    src="images/like.png" alt="Like-button" class="element__like-button-image"></button>
+                    <figure class="element element__figure">
+                        <img src="images/dombay.png" alt="Добай" class="element__image">
+                        <div class="element__body">
+                            <figcaption class="element__figcaption">Карачаевск</figcaption>
+                            <button class="element__like-button buttons" type="button"></button>
                         </div>
                     </figure>
                 </li>
-
                 <li class="elements__item">
-                    <figure class="element card">
+                    <figure class="element element__figure">
                         <img src="images/karachaevsk.png" alt="Карачаевск" class="element__image">
-                        <div class="card__body">
-                            <figcaption class="element__figcaption element__figcaption_text-decoration">
-                                Карачаево-Черкессия
-                            </figcaption>
-                            <button src="" alt="" class="element__like-button buttons" type="button"><img
-                                    src="images/like.png" alt="Like-button" class="element__like-button-image"></button>
+                        <div class="element__body">
+                            <figcaption class="element__figcaption">Карачаево-Черкессия</figcaption>
+                            <button class="element__like-button buttons" type="button"></button>
                         </div>
                     </figure>
                 </li>
-
             </ul>
-
         </section>
-
     </main>
 
     <section class="popup">
@@ -126,7 +103,7 @@
             <input type="submit" value="" class="popup__close-button buttons">
         </div>
     </section>
-    <footer class="footer section footer__section">
+    <footer class="footer footer__section section">
         <p class="footer__info">&copy 2020 Mesto Russia</p>
     </footer>
     <script src="scripts/index.js"></script>

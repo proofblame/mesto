@@ -1,9 +1,9 @@
-.main__section {
+.content__section {
     margin-bottom: 66px;
 }
 
 @media screen and (max-width: 920px) {
-    .main__section {
+    .content__section {
         margin-bottom: 48px;
     }
 }
