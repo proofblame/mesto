@@ -1,17 +1,69 @@
-# Проект 4: Место
+# Проект 4: Mesto Russia
 
-### Обзор
+### About
+------------
+Данный проект является четвертой проектной работой курса "Веб-разработчик",  а также первой работой по изучению JavaScript.
+Работа JavaScript реализована в кнопке "Редактировать", нажав на которую, можно внести изменения в информацию о человеке. 
 
-* Figma
-* Картинки
+### Installation and Usage
+------------
+Для ознакомления с результатами самостоятельной работы необходимо пройти по данной [ссылке](https://proofblame.github.io/russian-travel/ "Путешествие по России").
 
-**Figma**
+### Features
+------------
+- JavaScript;
+- HTML5;
+- CSS3;
+- Flexbox;
+- Grid;
+- Responsive layout;
+- Adaptive layout;
+- Relative size;
+- Local fonts used;
+- BEM technology;
+- File structure - NESTED.
 
-* [Ссылка на макет в Figma](https://www.figma.com/file/StZjf8HnoeLdiXS7dYrLAh/JavaScript.-Sprint-4)
+### Breaking points
+------------
+Для облегчения поиска, ниже представлен список точек разрыва в которых использованы блоки и элементы.
 
-**Картинки**
+    @media screen and (max-width: 920px) {
+        .root__page
+        .section
+        .content__section
+    }
 
-Доставать картинки предстоит из Фигмы. Это расхожая практика, поэтому полезно потренироваться.
-Не забудьте [оптимизировать картинки](https://tinypng.com/), чтобы ваш сайт загружался быстрее.
+        @media screen and (max-width: 882px) {
+        .border-bottom
+    }
 
-Удачи!
+    @media screen and (max-width: 697px) {
+        .profile__section  
+        .profile__avatar
+        .profile__info
+        .section__title_size_xl
+        .section__subtitle_size_l
+        .section__subtitle_size_m
+        .profile__edit-button
+        .profile__add-button
+        .popup__container
+        .popup__form
+        .popup__heading
+        .popup__text
+        .popup__close-button
+    }
+
+### Contributing
+------------
+Критика и указания на допущенные ошибки приветствуются!
+
+### Plans
+------------
+Доделать функционалл оставшихся кнопок с применением JavaScript.
+###  Authors
+------------
+Marokko Timur - студент Яндекс Практикума.
+
+### License
+------------
+[MIT License](https://choosealicense.com/licenses/mit/ "MIT License")
