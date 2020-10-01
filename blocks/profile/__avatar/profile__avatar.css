@@ -2,6 +2,7 @@
     max-width: 120px;
     justify-self: center;
     box-sizing: border-box;
+    border-radius: 50%;
 }
 
 @media screen and (max-width: 697px) {

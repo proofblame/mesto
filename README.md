@@ -30,7 +30,7 @@
     @media screen and (max-width: 920px) {
         .root__page
         .section
-        .content__section
+        .section__content
     }
 
         @media screen and (max-width: 882px) {
@@ -38,6 +38,8 @@
     }
 
     @media screen and (max-width: 697px) {
+        .header
+        .header__logo
         .profile__section  
         .profile__avatar
         .profile__info

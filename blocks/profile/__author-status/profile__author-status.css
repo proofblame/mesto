@@ -1,3 +1,15 @@
 .profile__author-status {
+    font-weight: normal;
+    color: #fff;
+    font-size: 18px;
+    line-height: 22px;
     grid-area: profile__author-status;
+}
+
+@media screen and (max-width: 697px) {
+    .profile__author-status {
+        font-size: 14px;
+        line-height: 17px;
+        text-align: right;
+    }
 }

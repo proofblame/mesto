@@ -1,4 +1,4 @@
-.profile__section {
+.section__profile {
     margin-bottom: 50px;
     display: grid;
     gap: 0 30px;
@@ -7,7 +7,7 @@
     align-items: center;
 }
 @media screen and (max-width: 697px) {
-    .profile__section {
+    .section__profile {
         grid-template-columns: 1fr;
         margin-bottom: 36px;
     }

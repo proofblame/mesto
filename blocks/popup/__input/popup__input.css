@@ -1,5 +1,5 @@
-.popup__text {
-    font-family: Inter;
+.popup__input {
+    font-family: Inter, sans-serif;
     font-style: normal;
     font-weight: normal;
     margin: 0;
@@ -8,15 +8,16 @@
     width: 100%;
     box-sizing: border-box;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-    min-height: 27px;
     margin-bottom: 30px;
+    font-size: 14px;
+    line-height: 17px;
 }
-.popup__text:last-child {
+.popup__input:last-child {
     margin-bottom: 48px;
 }
 
 @media screen and (max-width: 697px) {
-    .popup__text:last-child {
+    .popup__input:last-child {
         margin-bottom: 45px;
     }
 }
