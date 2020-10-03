@@ -3,7 +3,6 @@
 .header {
     margin: 0 auto;
     margin-bottom: 77px;
-    position: relative;
 }
 
 @media screen and (max-width: 697px) {
@@ -14,12 +13,12 @@
 
 .header::after {
     content: "";
-    position: absolute;
+    position: relative;
     display: block;
     left: 0;
     bottom: -41px;
     box-sizing: border-box;
-    border-bottom: 1px solid rgba(84, 84, 84, 0.3);
+    border-bottom: 1px solid rgba(84, 84, 84, 0.7);
     width: 100%;
     max-width: 882px;
 }

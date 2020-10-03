@@ -9,8 +9,10 @@ let profileAuthorStatus = document.querySelector(".profile__author-status");
 
 function popupToggle() {
     popup.classList.toggle("popup_opened");
-    profileAuthor.textContent = nameInput.value;
-    profileAuthorStatus.textContent = jobInput.value;
+    if (popup.classList.contains("popup_opened")) {
+        nameInput.value = profileAuthor.textContent;
+        jobInput.value = profileAuthorStatus.textContent;
+    }
 }
 
 function onClicPopupBackgroundkListener(event) {
@@ -22,6 +24,8 @@ function onClicPopupBackgroundkListener(event) {
 
 function formSubmitHandler(evt) {
     evt.preventDefault();
+    profileAuthor.textContent = nameInput.value;
+    profileAuthorStatus.textContent = jobInput.value;
     popupToggle();
 }
 

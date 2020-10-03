@@ -1,19 +1,10 @@
 .header__logo {
     max-width: 143px;
-    min-height: 34px;
 }
 
 
-
-@media screen and (max-width: 882px) {
-    .header__logo::after {
-        width: 100vw;
-        margin: 32px auto 39px;
+@media screen and (max-width: 697px) {
+    .header__logo {
+        max-width: 104px;
     }
 }
-
-
-
-
-
-
