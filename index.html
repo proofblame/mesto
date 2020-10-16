@@ -30,61 +30,6 @@
 
         <section class="elements">
             <ul class="elements__list">
-                <!-- <li class="elements__item">
-                    <figure class="element">
-                        <img src="images/karachaevsk.png" alt="Карачаевск" class="element__image">
-                        <div class="element__body">
-                            <p class="element__figcaption section__subtitle">Карачаевск</p>
-                            <button class="element__like-button buttons" type="button"></button>
-                        </div>
-                        <button class="element__delete-button buttons" type="button"></button>
-                    </figure>
-                </li> -->
-                <!-- <li class="elements__item">
-                    <figure class="element element__figure">
-                        <img src="images/elbrus.png" alt="Гора Эльбрус" class="element__image">
-                        <div class="element__body">
-                            <p class="element__figcaption section__subtitle">Гора Эльбрус</p>
-                            <button class="element__like-button buttons" type="button"></button>
-                        </div>
-                    </figure>
-                </li>
-                <li class="elements__item">
-                    <figure class="element element__figure">
-                        <img src="images/dombay.png" alt="Добай" class="element__image">
-                        <div class="element__body">
-                            <p class="element__figcaption section__subtitle">Карачаевск</p>
-                            <button class="element__like-button buttons" type="button"></button>
-                        </div>
-                    </figure>
-                </li>
-                <li class="elements__item">
-                    <figure class="element element__figure">
-                        <img src="images/elbrus.png" alt="Гора Эльбрус" class="element__image">
-                        <div class="element__body">
-                            <p class="element__figcaption section__subtitle">Гора Эльбрус</p>
-                            <button class="element__like-button buttons" type="button"></button>
-                        </div>
-                    </figure>
-                </li>
-                <li class="elements__item">
-                    <figure class="element element__figure">
-                        <img src="images/dombay.png" alt="Добай" class="element__image">
-                        <div class="element__body">
-                            <p class="element__figcaption section__subtitle">Карачаевск</p>
-                            <button class="element__like-button buttons" type="button"></button>
-                        </div>
-                    </figure>
-                </li>
-                <li class="elements__item">
-                    <figure class="element element__figure">
-                        <img src="images/karachaevsk.png" alt="Карачаевск" class="element__image">
-                        <div class="element__body">
-                            <p class="element__figcaption section__subtitle">Карачаево-Черкессия</p>
-                            <button class="element__like-button buttons" type="button"></button>
-                        </div>
-                    </figure>
-                </li> -->
             </ul>
         </section>
     </main>
@@ -93,13 +38,27 @@
         <p class="section__text">&copy; 2020 Mesto Russia</p>
     </footer>
 
-    <section class="popup section__popup">
+    <section class="popup section__popup popup_type_popup-edit-profile">
         <div class="popup__container">
             <form name="popup-form" class="popup__form">
                 <h2 class="popup__heading section__subtitle">Редактировать профиль</h2>
                 <fieldset class="popup__fields">
                     <input name="input-name" type="text" value="" class="popup__input popup__input_name">
                     <input name="input-job" type="text" value="" class="popup__input popup__input_job">
+                </fieldset>
+                <input name="save-button" type="submit" value="Сохранить" class="popup__save-button">
+                <button name="close-button" type="button" value="" class="popup__close-button buttons"></button>
+            </form>
+        </div>
+    </section>
+
+    <section class="popup section__popup popup_type_popup-add-card">
+        <div class="popup__container">
+            <form name="popup-form" class="popup__form">
+                <h2 class="popup__heading section__subtitle">Новое место</h2>
+                <fieldset class="popup__fields">
+                    <input name="input-title" type="text" value="" placeholder="Название" class="popup__input popup__input_title">
+                    <input name="input-link" type="text" value="" placeholder="Ссылка на картинку" class="popup__input popup__input_link">
                 </fieldset>
                 <input name="save-button" type="submit" value="Сохранить" class="popup__save-button">
                 <button name="close-button" type="button" value="" class="popup__close-button buttons"></button>

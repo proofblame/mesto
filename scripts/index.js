@@ -1,12 +1,16 @@
-let buttonOpenPopup = document.querySelector(".profile__edit-button");
-let buttonClosePopup = document.querySelector(".popup__close-button");
-let popup = document.querySelector(".popup");
-let formElement = document.querySelector(".popup__form");
-let nameInput = document.querySelector(".popup__input_name");
-let jobInput = document.querySelector(".popup__input_job");
-let profileAuthor = document.querySelector(".profile__author");
-let profileAuthorStatus = document.querySelector(".profile__author-status");
+const profileEditButton = document.querySelector('.profile__edit-button');
+const profileAddButton = document.querySelector('.profile__add-button');
+const popupCloseButton = document.querySelector('.popup__close-button');
+const formElement = document.querySelector('.popup__form');
+const nameInput = document.querySelector('.popup__input_name');
+const jobInput = document.querySelector('.popup__input_job');
+const profileAuthor = document.querySelector('.profile__author');
+const profileAuthorStatus = document.querySelector('.profile__author-status');
+const elementsList = document.querySelector('.elements__list');
+const editPopup = document.querySelector('.popup_type_popup-edit-profile');
+const addCard = document.querySelector('.popup_type_popup-add-card');
 
+// Массив с карточками
 const initialCards = [
     {
         name: 'Архыз',
@@ -34,8 +38,8 @@ const initialCards = [
     }
 ]; 
 
-const elementsList = document.querySelector('.elements__list')
 
+// Добавляем карточки на страницу
 const renderCards = () => {
     const card = initialCards.map(element => {
         return `<li class="elements__item">
@@ -51,19 +55,21 @@ const renderCards = () => {
     }).join('');
 
     elementsList.insertAdjacentHTML('afterbegin', card);
-    console.log(card);
-}
+};
 renderCards();
 
+// Скрываем или добавляем модальное окно на странице
+// через модификатор popup_opened
 
 function popupToggle() {
-    popup.classList.toggle("popup_opened");
-    if (popup.classList.contains("popup_opened")) {
+    editPopup.classList.toggle('popup_opened');
+    if (editPopup.classList.contains("popup_opened")) {
         nameInput.value = profileAuthor.textContent;
         jobInput.value = profileAuthorStatus.textContent;
     }
 }
 
+// Создаем событие указателя
 function onClicPopupBackgroundkListener(event) {
     if (event.target !== event.currentTarget) {
         return;
@@ -71,6 +77,8 @@ function onClicPopupBackgroundkListener(event) {
     popupToggle();
 }
 
+// Отмена действия браузера
+// Передача значений в модальное окно
 function formSubmitHandler(evt) {
     evt.preventDefault();
     profileAuthor.textContent = nameInput.value;
@@ -78,9 +86,14 @@ function formSubmitHandler(evt) {
     popupToggle();
 }
 
+// Слушатель событий для формы
 formElement.addEventListener("submit", formSubmitHandler);
 
-buttonOpenPopup.addEventListener("click", popupToggle);
-buttonClosePopup.addEventListener("click", popupToggle); 
-popup.addEventListener("click", onClicPopupBackgroundkListener);
+// Слушатель событий для кнопки редактирования профиля
+profileEditButton.addEventListener("click", popupToggle);
 
+// Слушатель событий для кнопки закрытия попапа
+popupCloseButton.addEventListener("click", popupToggle); 
+
+// Слушатель событий попапа (его закрытие) при клике на фоне
+editPopup.addEventListener("click", onClicPopupBackgroundkListener);
