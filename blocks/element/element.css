@@ -3,6 +3,7 @@
 @import url("./__figcaption/element__figcaption.css");
 @import url("./__like-button/element__like-button.css");
 @import url("./__delete-button/element__delete-button.css");
+@import url("./__like-button/_active/element__like-button_active.css");
 
 .element {
     margin: 0;

@@ -30,6 +30,12 @@ const addCardButton = сardPopup.querySelector(".popup__save-button");
 const сardPopupInputTitle = document.querySelector('.popup__input_title');
 const сardPopupInputLink = document.querySelector('.popup__input_link');
 
+// Кнопка удаления карточки
+const cardRemoveButton = document.querySelector('.element__delete-button');
+
+// Кнопка лайка
+const likeButton = document.querySelector('.element__like-button');
+
 
 
 
@@ -71,16 +77,32 @@ const renderCards = () => {
     const cards = initialCards.map(element => getItems(element));
     cardsList.append(...cards);
 
-}
+};
+
+const handlerRemove = (event) => {
+    event.target.closest('.elements__item').remove();
+};
+
+const handlerLike = (event) => {
+    event.target.classList.toggle('element__like-button_active');
+};
 
 const getItems = (data) => {
     const card = template.content.cloneNode(true);
-    console.log(card);
     card.querySelector('.section__subtitle').innerText = data.name;
     card.querySelector('.element__image').setAttribute('src', data.link);
     card.querySelector('.element__image').setAttribute('alt', data.name);
+    
+    // Кнопка удаления карточки
+    const cardRemoveButton = card.querySelector('.element__delete-button');
+    // Кнопка лайка
+    const likeButton = card.querySelector('.element__like-button');
+
+    cardRemoveButton.addEventListener('click', handlerRemove);
+    likeButton.addEventListener('click', handlerLike);
+
     return card;
-}
+};
 
 const bindHandler = () => {
     addCardButton.addEventListener('click', () => {
@@ -93,7 +115,7 @@ const bindHandler = () => {
         сardPopupInputTitle.value = '';
         сardPopupInputLink.value = '';
     });
-}
+};
 
 renderCards();
 bindHandler();
@@ -104,16 +126,16 @@ bindHandler();
 // через модификатор popup_opened
 
 // Функция добавления модификатора к попапу
-function popupToggle(element) {
-    element.classList.toggle("popup_opened");
-}
+function popupToggle(popup) {
+    popup.classList.toggle("popup_opened");
+};
 
 function checkFormValidation() {
     if (editPopup.classList.contains("popup_opened")) {
         nameInput.value = profileAuthor.textContent;
         jobInput.value = profileAuthorStatus.textContent;
     };
-}
+};
 
 // Функция закрытия попапа на фоне
 function onClicPopupBackgroundkListener(event, popup) {
@@ -121,7 +143,6 @@ function onClicPopupBackgroundkListener(event, popup) {
         return;
     }
     popupToggle(popup);
-
 }
 
 // Отмена действия браузера
@@ -131,13 +152,16 @@ function formSubmitHandler(evt) {
     profileAuthor.textContent = nameInput.value;
     profileAuthorStatus.textContent = jobInput.value;
     popupToggle(editPopup);
-}
+};
+
+function formSubmitHandler2(evt) {
+    evt.preventDefault();
+    popupToggle(сardPopup);
+};
 
 // Слушатель событий для формы
 editProfileForm.addEventListener("submit", formSubmitHandler);
-addCardForm.addEventListener("submit", () => {
-    evt.preventDefault();
-});
+addCardForm.addEventListener("submit", formSubmitHandler2);
 
 // Открытие попапа
 editPopupOpenButton.addEventListener('click', () => {
