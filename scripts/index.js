@@ -1,14 +1,32 @@
-const profileEditButton = document.querySelector(".profile__edit-button");
-const profileAddButton = document.querySelector(".profile__add-button");
-const popupCloseButton = document.querySelector(".popup__close-button");
-const formElement = document.querySelector(".popup__form");
+
 const nameInput = document.querySelector(".popup__input_name");
 const jobInput = document.querySelector(".popup__input_job");
 const profileAuthor = document.querySelector(".profile__author");
 const profileAuthorStatus = document.querySelector(".profile__author-status");
 const elementsList = document.querySelector(".elements__list");
+
+// popups
 const editPopup = document.querySelector(".popup_type_popup-edit-profile");
-const addCard = document.querySelector(".popup_type_popup-add-card");
+const сardPopup = document.querySelector(".popup_type_popup-add-card");
+
+// popups open buttons
+const editPopupOpenButton = document.querySelector(".profile__edit-button");
+const сardPopupOpenButton = document.querySelector(".profile__add-button");
+
+// popups close buttons
+const editPopupCloseButton = editPopup.querySelector(".popup__close-button");
+const сardPopupCloseButton = сardPopup.querySelector(".popup__close-button");
+
+// Кнопка сохранения форм
+const editProfileForm = document.querySelector(".popup__form_type_edit-profile");
+const addCardForm = document.querySelector(".popup-form_type_add-card");
+
+// Кнопки добавления карточки
+const сardPopupInputTitle = сardPopup.querySelector('.popup__input_title');
+const сardPopupInputLink = сardPopup.querySelector('.popup__input_link');
+
+
+
 
 // Массив с карточками
 const initialCards = [
@@ -44,44 +62,29 @@ const initialCards = [
     },
 ];
 
-// Добавляем карточки на страницу
-const renderCards = () => {
-    const card = initialCards
-        .map((element) => {
-            return `<li class="elements__item">
-                    <figure class="element">
-                        <img src="${element.link}" alt="${element.name}" class="element__image">
-                        <div class="element__body">
-                            <p class="element__figcaption section__subtitle">${element.name}</p>
-                            <button class="element__like-button buttons" type="button"></button>
-                        </div>
-                        <button class="element__delete-button buttons" type="button"></button>
-                    </figure>
-                </li>`;
-        })
-        .join("");
-
-    elementsList.insertAdjacentHTML("afterbegin", card);
-};
-renderCards();
 
 // Скрываем или добавляем модальное окно на странице
 // через модификатор popup_opened
 
-function popupToggle() {
-    editPopup.classList.toggle("popup_opened"); 
+// Функция добавления модификатора к попапу
+function popupToggle(element) {
+    element.classList.toggle("popup_opened");
+}
+
+function checkFormValidation() {
     if (editPopup.classList.contains("popup_opened")) {
         nameInput.value = profileAuthor.textContent;
         jobInput.value = profileAuthorStatus.textContent;
     };
 }
 
-// Создаем событие указателя
-function onClicPopupBackgroundkListener(event) {
+// Функция закрытия попапа на фоне
+function onClicPopupBackgroundkListener(event, popup) {
     if (event.target !== event.currentTarget) {
         return;
     }
-    popupToggle();
+    popupToggle(popup);
+
 }
 
 // Отмена действия браузера
@@ -90,20 +93,26 @@ function formSubmitHandler(evt) {
     evt.preventDefault();
     profileAuthor.textContent = nameInput.value;
     profileAuthorStatus.textContent = jobInput.value;
-    popupToggle();
+    popupToggle(editPopup);
 }
 
 // Слушатель событий для формы
-formElement.addEventListener("submit", formSubmitHandler);
+editProfileForm.addEventListener("submit", formSubmitHandler);
 
-// Слушатель событий для кнопки редактирования профиля
-profileEditButton.addEventListener("click", () => popupToggle());
+// Открытие попапа
+editPopupOpenButton.addEventListener('click', () => {
+    popupToggle(editPopup); 
+    checkFormValidation();
+});
+сardPopupOpenButton.addEventListener('click', () => popupToggle(сardPopup));
 
-// Слушатель событий для кнопки закрытия попапа
-popupCloseButton.addEventListener("click", () => popupToggle());
+// Закрытие попапа
+editPopupCloseButton.addEventListener('click', () => popupToggle(editPopup));
+сardPopupCloseButton.addEventListener('click', () => popupToggle(сardPopup));
 
-// Слушатель событий попапа (его закрытие) при клике на фоне
-editPopup.addEventListener("click", onClicPopupBackgroundkListener);
+// Закрытие попапа на фоне
+editPopup.addEventListener("click", () => onClicPopupBackgroundkListener(event, editPopup));
+сardPopup.addEventListener("click", () => onClicPopupBackgroundkListener(event, сardPopup));
 
-// Слушатель событий для кнопки добавления карточки
-profileAddButton.addEventListener("click", () => popupToggle());
+
+
