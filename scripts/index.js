@@ -5,7 +5,7 @@ const jobInput = document.querySelector(".popup__input_job");
 const profileAuthor = document.querySelector(".profile__author");
 const profileAuthorStatus = document.querySelector(".profile__author-status");
 const cardsList = document.querySelector(".elements__list");
-const template = document.querySelector('.template');
+const template = document.querySelector('.elements__item');
 
 
 // popups
@@ -130,6 +130,11 @@ function popupToggle(popup) {
     popup.classList.toggle("popup_opened");
 };
 
+editPopupOpenButton.addEventListener('click', () => popupToggle(editPopup));
+сardPopupOpenButton.addEventListener('click', () => popupToggle(сardPopup));
+
+
+
 function checkFormValidation() {
     if (editPopup.classList.contains("popup_opened")) {
         nameInput.value = profileAuthor.textContent;
@@ -144,6 +149,14 @@ function onClicPopupBackgroundkListener(event, popup) {
     }
     popupToggle(popup);
 }
+
+// Закрытие попапа на фоне
+editPopup.addEventListener("click", () => onClicPopupBackgroundkListener(event, editPopup));
+сardPopup.addEventListener("click", () => onClicPopupBackgroundkListener(event, сardPopup));
+
+
+
+
 
 // Отмена действия браузера
 // Передача значений в модальное окно
@@ -164,19 +177,16 @@ editProfileForm.addEventListener("submit", formSubmitHandler);
 addCardForm.addEventListener("submit", formSubmitHandler2);
 
 // Открытие попапа
-editPopupOpenButton.addEventListener('click', () => {
-    popupToggle(editPopup); 
-    checkFormValidation();
-});
-сardPopupOpenButton.addEventListener('click', () => popupToggle(сardPopup));
+// editPopupOpenButton.addEventListener('click', () => {
+//     popupToggle(editPopup); 
+//     checkFormValidation();
+// });
+// сardPopupOpenButton.addEventListener('click', () => popupToggle(сardPopup));
 
 // Закрытие попапа
 editPopupCloseButton.addEventListener('click', () => popupToggle(editPopup));
 сardPopupCloseButton.addEventListener('click', () => popupToggle(сardPopup));
 
-// Закрытие попапа на фоне
-editPopup.addEventListener("click", () => onClicPopupBackgroundkListener(event, editPopup));
-сardPopup.addEventListener("click", () => onClicPopupBackgroundkListener(event, сardPopup));
 
 
 
