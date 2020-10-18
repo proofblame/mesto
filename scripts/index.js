@@ -3,7 +3,7 @@ const nameInput = document.querySelector(".popup__input_name");
 const jobInput = document.querySelector(".popup__input_job");
 const profileAuthor = document.querySelector(".profile__author");
 const profileAuthorStatus = document.querySelector(".profile__author-status");
-const elementsList = document.querySelector(".elements__list");
+const cardsList = document.querySelector(".elements__list");
 
 // popups
 const editPopup = document.querySelector(".popup_type_popup-edit-profile");
@@ -18,7 +18,7 @@ const editPopupCloseButton = editPopup.querySelector(".popup__close-button");
 const сardPopupCloseButton = сardPopup.querySelector(".popup__close-button");
 
 // Кнопка сохранения форм
-const editProfileForm = document.querySelector(".popup__form_type_edit-profile");
+const editProfileForm = document.querySelector(".popup__form");
 const addCardForm = document.querySelector(".popup-form_type_add-card");
 
 // Кнопки добавления карточки
@@ -61,6 +61,25 @@ const initialCards = [
             "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
     },
 ];
+
+const renderCards = () => {
+    const cards = initialCards.map(element => {
+        return `<li class="elements__item">
+        <figure class="element">
+            <img src="${element.link}" alt="${element.name}" class="element__image">
+            <div class="element__body">
+                <p class="element__figcaption section__subtitle">${element.name}</p>
+                <button class="element__like-button buttons" type="button"></button>
+            </div>
+            <button class="element__delete-button buttons" type="button"></button>
+        </figure>
+    </li>`
+    }).join('');
+
+    cardsList.insertAdjacentHTML('afterbegin', cards);
+}
+renderCards();
+
 
 
 // Скрываем или добавляем модальное окно на странице
