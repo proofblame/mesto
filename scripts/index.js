@@ -5,6 +5,8 @@ const jobInput = document.querySelector(".popup__input_job");
 const profileAuthor = document.querySelector(".profile__author");
 const profileAuthorStatus = document.querySelector(".profile__author-status");
 const cardsList = document.querySelector(".elements__list");
+const template = document.querySelector('.template');
+
 
 // popups
 const editPopup = document.querySelector(".popup_type_popup-edit-profile");
@@ -20,6 +22,7 @@ const сardPopupCloseButton = сardPopup.querySelector(".popup__close-button");
 
 // Кнопка сохранения форм
 const editProfileForm = document.querySelector(".popup-form_type_edit-profile");
+const addCardForm = document.querySelector(".popup-form_type_add-card");
 
 const addCardButton = сardPopup.querySelector(".popup__save-button");
 
@@ -65,24 +68,19 @@ const initialCards = [
 ];
 
 const renderCards = () => {
-    const cards = initialCards.map(element => getItems(element)).join('');
+    const cards = initialCards.map(element => getItems(element));
+    cardsList.append(...cards);
 
-    cardsList.insertAdjacentHTML('afterbegin', cards);
 }
 
 const getItems = (data) => {
-    return `<li class="elements__item">
-        <figure class="element">
-            <img src="${data.link}" alt="${data.name}" class="element__image">
-            <div class="element__body">
-                <p class="element__figcaption section__subtitle">${data.name}</p>
-                <button class="element__like-button buttons" type="button"></button>
-            </div>
-            <button class="element__delete-button buttons" type="button"></button>
-        </figure>
-    </li>`
+    const card = template.content.cloneNode(true);
+    console.log(card);
+    card.querySelector('.section__subtitle').innerText = data.name;
+    card.querySelector('.element__image').setAttribute('src', data.link);
+    card.querySelector('.element__image').setAttribute('alt', data.name);
+    return card;
 }
-
 
 const bindHandler = () => {
     addCardButton.addEventListener('click', () => {
@@ -90,7 +88,8 @@ const bindHandler = () => {
             name: сardPopupInputTitle.value,
             link: сardPopupInputLink.value
         })
-        cardsList.insertAdjacentHTML('afterbegin', card);
+        cardsList.prepend(card);
+
         сardPopupInputTitle.value = '';
         сardPopupInputLink.value = '';
     });
@@ -136,7 +135,7 @@ function formSubmitHandler(evt) {
 
 // Слушатель событий для формы
 editProfileForm.addEventListener("submit", formSubmitHandler);
-addCardButton.addEventListener("submit", () => {
+addCardForm.addEventListener("submit", () => {
     evt.preventDefault();
 });
 
