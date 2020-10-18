@@ -130,8 +130,7 @@ function popupToggle(popup) {
     popup.classList.toggle("popup_opened");
 };
 
-editPopupOpenButton.addEventListener('click', () => popupToggle(editPopup));
-сardPopupOpenButton.addEventListener('click', () => popupToggle(сardPopup));
+
 
 
 
@@ -177,11 +176,11 @@ editProfileForm.addEventListener("submit", formSubmitHandler);
 addCardForm.addEventListener("submit", formSubmitHandler2);
 
 // Открытие попапа
-// editPopupOpenButton.addEventListener('click', () => {
-//     popupToggle(editPopup); 
-//     checkFormValidation();
-// });
-// сardPopupOpenButton.addEventListener('click', () => popupToggle(сardPopup));
+editPopupOpenButton.addEventListener('click', () => {
+    popupToggle(editPopup); 
+    checkFormValidation();
+});
+сardPopupOpenButton.addEventListener('click', () => popupToggle(сardPopup));
 
 // Закрытие попапа
 editPopupCloseButton.addEventListener('click', () => popupToggle(editPopup));
