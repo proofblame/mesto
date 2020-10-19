@@ -70,16 +70,25 @@ const buttonAddCard = addCardPopup.querySelector(".popup__save-button");
 const listCards = document.querySelector(".elements__list");
 
 // Template
-const templateCard = document.querySelector(".elements__item");
+const templateCard = document.querySelector(".elements__items");
 
 
 // Render cards
 const renderCards = () => {
-    const cards = initialCards
-        .map((element) => {
-            return getItems(element);
-        });
-        listCards.append(...cards);
+    const cards = initialCards.map((element) => {
+        return getItems(element);
+    });
+    listCards.append(...cards);
+};
+
+// Delete button
+const handlerRemove = (event) => {
+    event.target.closest(".elements__item").remove();
+};
+
+// Like button
+const handlerLike = (event) => {
+    event.target.classList.toggle('element__like-button_active');
 };
 
 // Render template
@@ -88,6 +97,14 @@ const getItems = (data) => {
     card.querySelector(".section__subtitle").textContent = data.name;
     card.querySelector(".element__image").setAttribute("src", data.link);
     card.querySelector(".element__image").setAttribute("alt", data.link);
+
+    // Delete card button
+    const deleteCardButton = card.querySelector(".element__delete-button");
+    // Like button
+    const likeButton = card.querySelector(".element__like-button");
+    deleteCardButton.addEventListener("click", handlerRemove);
+    likeButton.addEventListener("click", handlerLike);
+
     return card;
 };
 
@@ -96,12 +113,12 @@ const bindHandlersAddCard = () => {
     buttonAddCard.addEventListener("click", () => {
         const cardItem = getItems({
             name: titleInput.value,
-            link: linkInput.value
+            link: linkInput.value,
         });
         listCards.prepend(cardItem);
         titleInput.value = "";
         linkInput.value = "";
-    })
+    });
 };
 
 renderCards();
@@ -148,5 +165,3 @@ addCardForm.addEventListener("submit", (e) => {
     e.preventDefault();
     popupToggle(addCardPopup);
 });
-
-
