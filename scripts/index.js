@@ -80,6 +80,7 @@ const renderCards = () => {
     listCards.insertAdjacentHTML("afterbegin", cards);
 };
 
+// Render template
 const getItems = (data) => {
     return `<li class="elements__item"> 
             <figure class="element element__figure"> 
@@ -94,7 +95,7 @@ const getItems = (data) => {
 };
 
 // Add card
-const bindHandlers = () => {
+const bindHandlersAddCard = () => {
     buttonAddCard.addEventListener("click", () => {
         const card = getItems({
             name: titleInput.value,
@@ -107,7 +108,7 @@ const bindHandlers = () => {
 };
 
 renderCards();
-bindHandlers();
+bindHandlersAddCard();
 
 // Popup toggle
 function popupToggle(element) {
