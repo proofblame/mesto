@@ -14,8 +14,8 @@
     .popup__close-button {
         width: 26px;
         height: 26px;
-        top: -40px;
-        right: 0;
+        top: -26px;
+        right: -26px;
         background-size: cover;
     }
 }
