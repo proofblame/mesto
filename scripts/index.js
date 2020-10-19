@@ -101,10 +101,10 @@ const bindHandlers = () => {
             link: linkInput.value
         });
         listCards.insertAdjacentHTML("afterbegin", card);
+        titleInput.value = "";
+        linkInput.value = "";
     })
 };
-
-
 
 renderCards();
 bindHandlers();
