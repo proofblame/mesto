@@ -69,39 +69,36 @@ const buttonAddCard = addCardPopup.querySelector(".popup__save-button");
 // Card
 const listCards = document.querySelector(".elements__list");
 
+// Template
+const templateCard = document.querySelector(".elements__item");
+
+
 // Render cards
 const renderCards = () => {
     const cards = initialCards
         .map((element) => {
             return getItems(element);
-        })
-        .join("");
-
-    listCards.insertAdjacentHTML("afterbegin", cards);
+        });
+        listCards.append(...cards);
 };
 
 // Render template
 const getItems = (data) => {
-    return `<li class="elements__item"> 
-            <figure class="element element__figure"> 
-                <img src="${data.link}" alt="${data.name}" class="element__image"> 
-                <div class="element__body"> 
-                    <p class="element__figcaption section__subtitle">${data.name}</p> 
-                    <button class="element__like-button buttons" type="button"></button> 
-                </div> 
-                <button class="element__delete-button buttons" type="button"></button>
-            </figure> 
-            </li>`;
+    const card = templateCard.content.cloneNode(true);
+    card.querySelector(".section__subtitle").textContent = data.name;
+    card.querySelector(".element__image").setAttribute("src", data.link);
+    card.querySelector(".element__image").setAttribute("alt", data.link);
+    return card;
 };
 
 // Add card
 const bindHandlersAddCard = () => {
     buttonAddCard.addEventListener("click", () => {
-        const card = getItems({
+        const cardItem = getItems({
             name: titleInput.value,
             link: linkInput.value
         });
-        listCards.insertAdjacentHTML("afterbegin", card);
+        listCards.prepend(cardItem);
         titleInput.value = "";
         linkInput.value = "";
     })
