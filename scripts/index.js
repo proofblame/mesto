@@ -50,17 +50,21 @@ const profileCloseButton = editProfilePopup.querySelector(
 const cardCloseButton = addCardPopup.querySelector(".popup__close-button");
 
 // Submit buttons
-const editProfileForm = editProfilePopup.querySelector(
-    ".popup-form_type_edit-profile"
-);
+const editProfileForm = document.querySelector(".popup-form_type_edit-profile");
+const addCardForm = document.querySelector(".popup-form_type_add-card");
 
 // Inputs
 const nameInput = document.querySelector(".popup__input_name");
 const jobInput = document.querySelector(".popup__input_job");
+const titleInput = document.querySelector(".popup__input_title");
+const linkInput = document.querySelector(".popup__input_link");
 
 // Areas
 const authorName = document.querySelector(".profile__author");
 const authorJob = document.querySelector(".profile__author-status");
+
+// Button to add card
+const buttonAddCard = addCardPopup.querySelector(".popup__save-button");
 
 // Card
 const listCards = document.querySelector(".elements__list");
@@ -69,23 +73,41 @@ const listCards = document.querySelector(".elements__list");
 const renderCards = () => {
     const cards = initialCards
         .map((element) => {
-            return `<li class="elements__item"> 
-                        <figure class="element element__figure"> 
-                            <img src="${element.link}" alt="${element.name}" class="element__image"> 
-                            <div class="element__body"> 
-                                <p class="element__figcaption section__subtitle">${element.name}</p> 
-                                <button class="element__like-button buttons" type="button"></button> 
-                            </div> 
-                            <button class="element__delete-button buttons" type="button"></button>
-                        </figure> 
-                        </li>`;
+            return getItems(element);
         })
         .join("");
 
     listCards.insertAdjacentHTML("afterbegin", cards);
 };
 
+const getItems = (data) => {
+    return `<li class="elements__item"> 
+            <figure class="element element__figure"> 
+                <img src="${data.link}" alt="${data.name}" class="element__image"> 
+                <div class="element__body"> 
+                    <p class="element__figcaption section__subtitle">${data.name}</p> 
+                    <button class="element__like-button buttons" type="button"></button> 
+                </div> 
+                <button class="element__delete-button buttons" type="button"></button>
+            </figure> 
+            </li>`;
+};
+
+// Add card
+const bindHandlers = () => {
+    buttonAddCard.addEventListener("click", () => {
+        const card = getItems({
+            name: titleInput.value,
+            link: linkInput.value
+        });
+        listCards.insertAdjacentHTML("afterbegin", card);
+    })
+};
+
+
+
 renderCards();
+bindHandlers();
 
 // Popup toggle
 function popupToggle(element) {
@@ -97,7 +119,7 @@ function backgroundListener(event) {
     if (event.target !== event.currentTarget) {
         return;
     }
-    popupToggle(element);
+    popupToggle();
 }
 
 // Close popups
@@ -124,3 +146,9 @@ editProfileForm.addEventListener("submit", (e) => {
     authorJob.textContent = jobInput.value;
     popupToggle(editProfilePopup);
 });
+addCardForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    popupToggle(addCardPopup);
+});
+
+
