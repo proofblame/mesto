@@ -33,7 +33,6 @@ const initialCards = [
 ];
 
 // Popups
-const popupOpened = document.querySelector(".popup_opened");
 const editProfilePopup = document.querySelector(
     ".popup_type_popup-edit-profile"
 );
