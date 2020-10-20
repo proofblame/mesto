@@ -33,7 +33,7 @@ const initialCards = [
 ];
 
 // Popups
-const popup = document.querySelectorAll(".popup");
+const popupOpened = document.querySelector(".popup_opened");
 const editProfilePopup = document.querySelector(
     ".popup_type_popup-edit-profile"
 );
@@ -74,11 +74,15 @@ const listCards = document.querySelector(".elements__list");
 // Template
 const templateCard = document.querySelector(".elements__items");
 
+// galleryPopups details
+const imagePopupGallery = document.querySelector(".popup__image");
+const titlePopupGallery = document.querySelector(".popup__title");
+
 
 // Render cards
 const renderCards = () => {
     const cards = initialCards.map((element) => {
-        return getItems(element);
+        return createCard(element);
     });
     listCards.append(...cards);
 };
@@ -94,7 +98,7 @@ const handlerLike = (event) => {
 };
 
 // Render template
-const getItems = (data) => {
+const createCard = (data) => {
     const card = templateCard.cloneNode(true).content;
 
     const imageCard = card.querySelector(".element__image");
@@ -115,14 +119,9 @@ const getItems = (data) => {
 };
 
 const handleImagePreview = (details) => {
-
-    const imagePopupGallery = document.querySelector(".popup__image");
-    const titlePopupGallery = document.querySelector(".popup__title");
-    initialCards.forEach( () => {
-        imagePopupGallery.src = details.link;
-        imagePopupGallery.alt = details.name;
-        titlePopupGallery.textContent = details.name;
-    });
+    imagePopupGallery.src = details.link;
+    imagePopupGallery.alt = details.name;
+    titlePopupGallery.textContent = details.name;
 
     popupToggle(galleryPopup);
 };
@@ -130,42 +129,37 @@ const handleImagePreview = (details) => {
 
 
 // Add card
-const bindHandlersAddCard = () => {
     buttonAddCard.addEventListener("click", () => {
-        const cardItem = getItems({
+        const cardItem = createCard({
             name: titleInput.value,
             link: linkInput.value,
         });
         listCards.prepend(cardItem);
-        titleInput.value = "";
-        linkInput.value = "";
     });
-};
 
 renderCards();
-bindHandlersAddCard();
-
-
-
 
 // Popup toggle
 function popupToggle(element) {
     element.classList.toggle("popup_opened");
 }
 
-// Closing popup when clicked on the background
-function backgroundListener(event) {
-    if (event.target !== event.currentTarget) {
-        return;
-    }
-    popupToggle();
-}
+// Closing popup when clicked on the background and close button
+function backgroundListener(event) { 
+    const popup = event.currentTarget;
+    if (event.target !== popup) { 
+        return; 
+    };
+
+    popupToggle(popup); 
+};
 
 // Close popups
 editProfilePopup.addEventListener("click", backgroundListener);
-profileCloseButton.addEventListener("click", () =>
-    popupToggle(editProfilePopup)
-);
+addCardPopup.addEventListener("click", backgroundListener);
+galleryPopup.addEventListener("click", backgroundListener);
+
+profileCloseButton.addEventListener("click", () => popupToggle(editProfilePopup));
 cardCloseButton.addEventListener("click", () => popupToggle(addCardPopup));
 galleryCloseButton.addEventListener("click", () => popupToggle(galleryPopup))
 
@@ -177,8 +171,11 @@ profileEditButton.addEventListener("click", () => {
         jobInput.value = authorJob.textContent;
     }
 });
-addCardButton.addEventListener("click", () => popupToggle(addCardPopup));
-
+addCardButton.addEventListener("click", () => {
+    popupToggle(addCardPopup);
+    titleInput.value = "";
+    linkInput.value = "";
+});
 
 // Submit handlers
 editProfileForm.addEventListener("submit", (e) => {

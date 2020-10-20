@@ -1,9 +1,7 @@
 .popup__gallery {
     position: relative;
     display: flex;
-    /* align-items: center; */
     flex-direction: column;
-    max-width: 75vw;
-    max-height: 75vh;
-
+    width: 75vw;
+    height: 75vh;
 }

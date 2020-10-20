@@ -7,7 +7,7 @@
 
 ### Installation and Usage
 ------------
-Для ознакомления с результатами самостоятельной работы необходимо пройти по данной [ссылке](https://proofblame.github.io/mesto/ "Mesto Russia").
+Для ознакомления с результатами самостоятельной работы необходимо пройти по данной [ссылке](https://proofblame.github.io/mesto/index.html "Mesto Russia").
 
 ### Features
 ------------
