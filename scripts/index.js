@@ -64,9 +64,6 @@ const linkInput = document.querySelector(".popup__input_link");
 const authorName = document.querySelector(".profile__author");
 const authorJob = document.querySelector(".profile__author-status");
 
-// Button to add card
-const buttonAddCard = addCardPopup.querySelector(".popup__save-button");
-
 // Card
 const listCards = document.querySelector(".elements__list");
 
@@ -125,17 +122,6 @@ const handleImagePreview = (details) => {
     popupToggle(galleryPopup);
 };
 
-
-
-// Add card
-    buttonAddCard.addEventListener("click", () => {
-        const cardItem = createCard({
-            name: titleInput.value,
-            link: linkInput.value,
-        });
-        listCards.prepend(cardItem);
-    });
-
 renderCards();
 
 // Popup toggle
@@ -185,5 +171,10 @@ editProfileForm.addEventListener("submit", (e) => {
 });
 addCardForm.addEventListener("submit", (e) => {
     e.preventDefault();
+    const cardItem = createCard({
+        name: titleInput.value,
+        link: linkInput.value,
+    });
+    listCards.prepend(cardItem);
     popupToggle(addCardPopup);
 });
