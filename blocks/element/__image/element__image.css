@@ -1,6 +1,6 @@
 .element__image {
     object-fit: cover;
-    background-color: #fff;
+    background-color: rgb(230, 230, 230);
     width: 282px;
     height: 282px;
     margin-bottom: 25px;
