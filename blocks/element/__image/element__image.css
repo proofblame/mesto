@@ -14,7 +14,7 @@
     cursor: pointer;
 }
 
-.element__image:before {
+.element__image::after {
     content: "\26D1" "  Извините, изображение не загруженно";
     display: flex;
     align-items: center;
