@@ -26,6 +26,8 @@
 /* -- popup -- */
 @import url("../blocks/popup/popup.css");
 
+@import url("../blocks/error/error.css");
+
 /* --в случае аварии расскомментировать-- */
 /* * {
     outline-width: 1px;
