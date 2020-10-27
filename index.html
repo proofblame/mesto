@@ -44,12 +44,12 @@
             <form name="new-card" class="popup__form popup-form_type_add-card" novalidate>
                 <h2 class="popup__heading section__subtitle">Новое место</h2>
                 <fieldset class="popup__fields">
-                    <input name="name" type="text" value="" placeholder="Название"
-                        class="popup__input popup__input_title" minlength="2" maxlength="30" required id="name-card">
+                        <input name="name" type="text" value="" placeholder="Название"
+                            class="popup__input popup__input_title" minlength="2" maxlength="30" required id="name-card">
                         <span id="name-card-error" class="error"></span>
-                    <input name="input-link" type="url" value="" placeholder="Ссылка на картинку"
-                        class="popup__input popup__input_link" required id="link">
-                    <span class='error' id='link-error'></span>
+                        <input name="input-link" type="url" value="" placeholder="Ссылка на картинку"
+                            class="popup__input popup__input_link" required id="link">
+                        <span class='error' id='link-error'></span>
                 </fieldset>
                 <input name="save-button" type="submit" value="Сохранить" class="popup__save-button">
                 <button name="close-button" type="button" value="" class="popup__close-button buttons"></button>
@@ -62,10 +62,12 @@
             <form name="edit-user" class="popup__form popup-form_type_edit-profile" novalidate>
                 <h2 class="popup__heading section__subtitle">Редактировать профиль</h2>
                 <fieldset class="popup__fields">
-                    <input name="user-name" type="text" value="" class="popup__input popup__input_name" id="user-name" minlength="2" maxlength="40" required>
-                    <span id="user-name-error" class="error"></span>
-                    <input name="input-job" type="text" value="" class="popup__input popup__input_job" id="about" minlength="2" maxlength="200" required>
-                    <span id="about-error" class="error"></span>
+                        <input name="user-name" type="text" value="" class="popup__input popup__input_name" id="user-name"
+                            minlength="2" maxlength="40" required>
+                        <span id="user-name-error" class="error"></span>
+                        <input name="input-job" type="text" value="" class="popup__input popup__input_job" id="about"
+                            minlength="2" maxlength="200" required>
+                        <span id="about-error" class="error"></span>
                 </fieldset>
                 <input name="save-button" type="submit" value="Сохранить" class="popup__save-button">
                 <button name="close-button" type="button" value="" class="popup__close-button buttons"></button>
