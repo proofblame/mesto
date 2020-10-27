@@ -178,8 +178,12 @@ addCardButton.addEventListener("click", () => {
     openPopup(addCardPopup);
     titleInput.value = "";
     linkInput.value = "";
-    document.querySelector(".popup__save-button").setAttribute("disabled", "disabled");
+    // document.querySelector(".popup__save-button").setAttribute("disabled", "disabled");
     saveButton.classList.add("popup__save-button_invalid");
+    const formElement = document.querySelector(".popup__form");
+    const buttonElement = document.querySelector(".popup__save-button");
+    const inactiveButtonClass = (".popup__save-button");
+    toggleButtonState(formElement, buttonElement, inactiveButtonClass)
 });
 
 // Submit handlers
