@@ -8,4 +8,8 @@
     display: block;
     box-sizing: border-box;
     min-height: 25px;
+    margin-bottom: 13px;
+}
+.error:last-of-type {
+    margin-bottom: 0;
 }
