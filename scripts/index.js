@@ -129,9 +129,17 @@ const handleImagePreview = (details) => {
 renderCards();
 
 // Popup toggle
+
+function openPopup(element) {
+    element.classList.add("popup_opened");
+}
+
+function closePopup(element) {
+    element.classList.remove("popup_opened");
+}
+
 function popupToggle(element) {
     element.classList.toggle("popup_opened");
-
 }
 
 // Closing popup when clicked on the background and close button
