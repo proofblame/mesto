@@ -150,10 +150,9 @@ function handleClickOnOverlay(event) {
 function handleEscapeButton(evt) {
     if (evt.key === "Escape") {
         const popupOpened = document.querySelector(".popup_opened");
-        popupOpened.classList.remove("popup_opened");
-    }
-    document.removeEventListener("keydown", handleEscapeButton);
-}
+        closePopup(popupOpened);
+    };
+};
 
 // Close popups
 editProfilePopup.addEventListener("click", handleClickOnOverlay);
@@ -178,8 +177,6 @@ addCardButton.addEventListener("click", () => {
     openPopup(addCardPopup);
     titleInput.value = "";
     linkInput.value = "";
-    // document.querySelector(".popup__save-button").setAttribute("disabled", "disabled");
-    saveButton.classList.add("popup__save-button_invalid");
     const formElement = document.querySelector(".popup__form");
     const buttonElement = document.querySelector(".popup__save-button");
     const inactiveButtonClass = (".popup__save-button");
