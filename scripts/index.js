@@ -1,36 +1,9 @@
+import { initialCards } from './initialCards.js';
+import { Card } from './Card.js';
+
+
 // Card array
-const initialCards = [
-    {
-        name: "Архыз",
-        link:
-            "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-    },
-    {
-        name: "Челябинская область",
-        link:
-            "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-    },
-    {
-        name: "Иваново",
-        link:
-            "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-    },
-    {
-        name: "Камчатка",
-        link:
-            "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-    },
-    {
-        name: "Холмогорский район",
-        link:
-            "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-    },
-    {
-        name: "Байкал",
-        link:
-            "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-    },
-];
+
 // Edit Profile Popup
 // const editProfilePopup = document.querySelector(
 //     ".popup_type_popup-edit-profile"
@@ -81,52 +54,7 @@ const CONTAINER = document.querySelector('.elements__list');
 const CARD_ITEM_TEMPLATE_SELECTOR = '.elements__items';
 
 // OOP
-class Card {
-    constructor(data, cardSelector) {
-        this._name = data.name;
-        this._link = data.link;
-        this._cardSelector = cardSelector;
-    }
 
-    _getTemplate() {
-        const cardElement = document
-        .querySelector(this._cardSelector)
-        .content
-        .querySelector('.elements__item')
-        .cloneNode(true);
-
-        return cardElement;
-    }
-
-    generateCard() {
-        this._element = this._getTemplate();
-        this._setEventListeners();
-
-        this._element.querySelector('.element__image').src = this._link;
-        this._element.querySelector('.element__image').alt = this._name;
-        this._element.querySelector('.element__figcaption').textContent = this._name;
-        
-        return this._element;
-    }
-
-    _handleCardClick() {
-        this._element.querySelector('.element__like-button').classList.toggle('element__like-button_active');
-    }
-
-    _handleDeleteCard() {
-        this._element.remove();
-    }
-
-    _setEventListeners() {
-        this._element.querySelector('.element__like-button').addEventListener('click', () => {
-            this._handleCardClick();
-        });
-
-        this._element.querySelector('.element__delete-button').addEventListener('click', () => {
-            this._handleDeleteCard();
-        });
-    }
-}
 
 initialCards.forEach((item) => {
     const card = new Card(item, CARD_ITEM_TEMPLATE_SELECTOR);
