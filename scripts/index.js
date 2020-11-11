@@ -43,24 +43,21 @@ const galleryCloseButton = galleryPopup.querySelector(".popup__close-button");
 const imagePopupGallery = document.querySelector(".popup__image");
 const titlePopupGallery = document.querySelector(".popup__title");
 
-const obj = {
-    formSelector: '.popup__form',
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__save-button',
-    inactiveButtonClass: 'popup__save-button_invalid',
-    inputErrorClass: 'popup__input_state_invalid',
-    errorClass: 'error'
-}
+// Settings
+const settings = {
+    formSelector: ".popup__form",
+    inputSelector: ".popup__input",
+    submitButtonSelector: ".popup__save-button",
+    inactiveButtonClass: "popup__save-button_invalid",
+    inputErrorClass: "popup__input_state_invalid",
+    errorClass: "error",
+};
 
-
-const editUserForm = new FormValidator(obj, '.popup-form_type_add-card');
+const editUserForm = new FormValidator(settings, editProfileForm);
 editUserForm.enableValidation();
-const newCardForm = new FormValidator(obj, '.popup-form_type_edit-profile');
+
+const newCardForm = new FormValidator(settings, addCardForm);
 newCardForm.enableValidation();
-
-
-
-
 
 const handleImagePreview = (card) => {
     imagePopupGallery.src = card._link;
@@ -72,7 +69,11 @@ const handleImagePreview = (card) => {
 
 // OOP
 initialCards.forEach((item) => {
-    const card = new Card(item, CARD_ITEM_TEMPLATE_SELECTOR, handleImagePreview);
+    const card = new Card(
+        item,
+        CARD_ITEM_TEMPLATE_SELECTOR,
+        handleImagePreview
+    );
     const cardElement = card.generateCard();
 
     container.append(cardElement);
@@ -129,10 +130,7 @@ addCardButton.addEventListener("click", () => {
     openPopup(addCardPopup);
     titleInput.value = "";
     linkInput.value = "";
-    // const formElement = document.querySelector(".popup__form");
-    // const buttonElement = document.querySelector(".popup__save-button");
-    // const inactiveButtonClass = ".popup__save-button";
-    // toggleButtonState(formElement, buttonElement, inactiveButtonClass);
+    newCardForm.enableValidation();
 });
 
 // Submit handlers
@@ -149,7 +147,8 @@ addCardForm.addEventListener("submit", (e) => {
             name: titleInput.value,
             link: linkInput.value,
         },
-        CARD_ITEM_TEMPLATE_SELECTOR, handleImagePreview
+        CARD_ITEM_TEMPLATE_SELECTOR,
+        handleImagePreview
     );
     const cardElement = newCard.generateCard();
     container.prepend(cardElement);

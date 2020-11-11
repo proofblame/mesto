@@ -48,7 +48,7 @@ function enableValidation({formSelector, ...rest}) {
         document.querySelectorAll(".popup__form")
     );
     formElements.forEach((form) => {
-        form.addEventListener("submit", (evt) => {
+        form.addEventeeListener("submit", (evt) => {
             evt.preventDefault();
         });
         setEventListener(form, {...rest});
