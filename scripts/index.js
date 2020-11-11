@@ -1,7 +1,6 @@
 import { initialCards } from "./initialCards.js";
 import { Card } from "./Card.js";
-
-// Card array
+import { FormValidator } from "./FormValidator.js";
 
 // Edit Profile Popup
 const editProfilePopup = document.querySelector(
@@ -21,14 +20,9 @@ const addCardPopup = document.querySelector(".popup_type_popup-add-card");
 const cardCloseButton = addCardPopup.querySelector(".popup__close-button");
 const addCardForm = addCardPopup.querySelector(".popup-form_type_add-card");
 
-// Gallery Popup
-const galleryPopup = document.querySelector(".popup_type_popup-gallery");
-const galleryCloseButton = galleryPopup.querySelector(".popup__close-button");
-
 // Open buttons
 const profileEditButton = document.querySelector(".profile__edit-button");
 const addCardButton = document.querySelector(".profile__add-button");
-
 const saveButton = document.querySelector(".popup__save-button");
 
 // Inputs
@@ -40,26 +34,33 @@ const authorName = document.querySelector(".profile__author");
 const authorJob = document.querySelector(".profile__author-status");
 
 // Template
-const templateCard = document.querySelector(".elements__items");
-
-// galleryPopups details
-const imagePopupGallery = document.querySelector(".popup__image");
-const titlePopupGallery = document.querySelector(".popup__title");
-
-const container = document.querySelector(".elements__list");
 const CARD_ITEM_TEMPLATE_SELECTOR = ".elements__items";
+const container = document.querySelector(".elements__list");
+
+// Gallery Popup
+export const galleryPopup = document.querySelector(".popup_type_popup-gallery");
+export const galleryCloseButton = galleryPopup.querySelector(".popup__close-button");
+export const imagePopupGallery = document.querySelector(".popup__image");
+export const titlePopupGallery = document.querySelector(".popup__title");
+
+
+const handleImagePreview = (card) => {
+    imagePopupGallery.src = card._link;
+    imagePopupGallery.alt = card._name;
+    titlePopupGallery.textContent = card._name;
+
+    openPopup(galleryPopup);
+};
 
 // OOP
-
 initialCards.forEach((item) => {
-    const card = new Card(item, CARD_ITEM_TEMPLATE_SELECTOR);
+    const card = new Card(item, CARD_ITEM_TEMPLATE_SELECTOR, handleImagePreview);
     const cardElement = card.generateCard();
 
     container.append(cardElement);
 });
 
 // Open and close popup
-
 function openPopup(element) {
     element.classList.add("popup_opened");
     document.addEventListener("keydown", handleEscapeButton);
@@ -125,10 +126,13 @@ editProfileForm.addEventListener("submit", (e) => {
 });
 addCardForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    const newCard = new Card({
-        name: titleInput.value,
-        link: linkInput.value,
-    }, CARD_ITEM_TEMPLATE_SELECTOR);
+    const newCard = new Card(
+        {
+            name: titleInput.value,
+            link: linkInput.value,
+        },
+        CARD_ITEM_TEMPLATE_SELECTOR, handleImagePreview
+    );
     const cardElement = newCard.generateCard();
     container.prepend(cardElement);
     closePopup(addCardPopup);
