@@ -38,10 +38,28 @@ const CARD_ITEM_TEMPLATE_SELECTOR = ".elements__items";
 const container = document.querySelector(".elements__list");
 
 // Gallery Popup
-export const galleryPopup = document.querySelector(".popup_type_popup-gallery");
-export const galleryCloseButton = galleryPopup.querySelector(".popup__close-button");
-export const imagePopupGallery = document.querySelector(".popup__image");
-export const titlePopupGallery = document.querySelector(".popup__title");
+const galleryPopup = document.querySelector(".popup_type_popup-gallery");
+const galleryCloseButton = galleryPopup.querySelector(".popup__close-button");
+const imagePopupGallery = document.querySelector(".popup__image");
+const titlePopupGallery = document.querySelector(".popup__title");
+
+const obj = {
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__save-button',
+    inactiveButtonClass: 'popup__save-button_invalid',
+    inputErrorClass: 'popup__input_state_invalid',
+    errorClass: 'error'
+}
+
+
+const editUserForm = new FormValidator(obj, '.popup-form_type_add-card');
+editUserForm.enableValidation();
+const newCardForm = new FormValidator(obj, '.popup-form_type_edit-profile');
+newCardForm.enableValidation();
+
+
+
 
 
 const handleImagePreview = (card) => {
@@ -111,10 +129,10 @@ addCardButton.addEventListener("click", () => {
     openPopup(addCardPopup);
     titleInput.value = "";
     linkInput.value = "";
-    const formElement = document.querySelector(".popup__form");
-    const buttonElement = document.querySelector(".popup__save-button");
-    const inactiveButtonClass = ".popup__save-button";
-    toggleButtonState(formElement, buttonElement, inactiveButtonClass);
+    // const formElement = document.querySelector(".popup__form");
+    // const buttonElement = document.querySelector(".popup__save-button");
+    // const inactiveButtonClass = ".popup__save-button";
+    // toggleButtonState(formElement, buttonElement, inactiveButtonClass);
 });
 
 // Submit handlers

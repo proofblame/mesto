@@ -54,8 +54,6 @@ export class Card {
             .querySelector(".element__image")
             .addEventListener("click", () => {
                 this.handleImagePreview(this);
-                console.log(this);
             });
-
     }
 }
