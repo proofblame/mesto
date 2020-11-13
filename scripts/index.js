@@ -1,7 +1,4 @@
-import { initialCards } from "./initialCards.js";
-import { Card } from "./Card.js";
-import { FormValidator } from "./FormValidator.js";
-
+const popupOpened = document.querySelector(".popup_opened");
 // Edit Profile Popup
 const editProfilePopup = document.querySelector(
     ".popup_type_popup-edit-profile"
@@ -67,6 +64,11 @@ const handleImagePreview = (card) => {
     openPopup(galleryPopup);
 };
 
+import { initialCards } from "./initialCards.js";
+import { Card } from "./Card.js";
+import { FormValidator } from "./FormValidator.js";
+
+
 // OOP
 initialCards.forEach((item) => {
     const card = new Card(
@@ -102,7 +104,6 @@ function handleClickOnOverlay(event) {
 
 function handleEscapeButton(evt) {
     if (evt.key === "Escape") {
-        const popupOpened = document.querySelector(".popup_opened");
         closePopup(popupOpened);
     }
 }
