@@ -32,13 +32,18 @@ export class FormValidator {
             this._showError(input);
         }
     }
+
+    addInactiveButtonClass(buttonElement) {
+        buttonElement.classList.add(this._inactiveButtonClass);
+        buttonElement.disabled = true;
+    }
+
     _toggleButtonState(buttonElement) {
         if (this._form.checkValidity()) {
             buttonElement.classList.remove(this._inactiveButtonClass);
             buttonElement.disabled = false;
         } else {
-            buttonElement.classList.add(this._inactiveButtonClass);
-            buttonElement.disabled = true;
+            this.addInactiveButtonClass(buttonElement);
         }
     }
 

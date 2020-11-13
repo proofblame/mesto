@@ -121,7 +121,8 @@ galleryCloseButton.addEventListener("click", () => closePopup(galleryPopup));
 // Open popups
 profileEditButton.addEventListener("click", () => {
     openPopup(editProfilePopup);
-    saveButton.classList.add("popup__save-button_invalid");
+    const buttonElement = 
+    editUserForm.addInactiveButtonClass(saveButton);
     nameInput.value = authorName.textContent;
     jobInput.value = authorJob.textContent;
 });
@@ -130,7 +131,7 @@ addCardButton.addEventListener("click", () => {
     openPopup(addCardPopup);
     titleInput.value = "";
     linkInput.value = "";
-    newCardForm.enableValidation();
+    newCardForm.addInactiveButtonClass(saveButton);
 });
 
 // Submit handlers
