@@ -33,6 +33,7 @@ export const authorJob = document.querySelector(".profile__author-status");
 export const CARD_ITEM_TEMPLATE_SELECTOR = ".elements__items";
 export const container = document.querySelector(".elements__list");
 
+
 // Gallery Popup
 export const galleryPopup = document.querySelector(".popup_type_popup-gallery");
 export const galleryCloseButton = galleryPopup.querySelector(".popup__close-button");

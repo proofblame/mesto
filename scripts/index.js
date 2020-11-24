@@ -28,11 +28,7 @@ import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
 import { openPopup, closePopup, handleClickOnOverlay } from "./utils.js";
 
-const editUserForm = new FormValidator(settings, editProfileForm);
-editUserForm.enableValidation();
-
-const newCardForm = new FormValidator(settings, addCardForm);
-newCardForm.enableValidation();
+import Section from "./Section.js";
 
 const handleImagePreview = (card) => {
     imagePopupGallery.src = card._link;
@@ -42,17 +38,29 @@ const handleImagePreview = (card) => {
     openPopup(galleryPopup);
 };
 
-// OOP
-initialCards.forEach((item) => {
-    const card = new Card(
-        item,
-        CARD_ITEM_TEMPLATE_SELECTOR,
-        handleImagePreview
-    );
-    const cardElement = card.generateCard();
+const cardList = new Section(
+    {
+        items: initialCards,
+        renderer: (item) => {
+            const card = new Card(
+                item,
+                CARD_ITEM_TEMPLATE_SELECTOR,
+                handleImagePreview
+            );
+            const cardElement = card.generateCard();
+            cardList.addItem(cardElement);
+        },
+    },
+    container
+);
+cardList.renderItems();
 
-    container.append(cardElement);
-});
+
+const editUserForm = new FormValidator(settings, editProfileForm);
+editUserForm.enableValidation();
+
+const newCardForm = new FormValidator(settings, addCardForm);
+newCardForm.enableValidation();
 
 // Close popups
 editProfilePopup.addEventListener("click", handleClickOnOverlay);
