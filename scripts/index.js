@@ -26,17 +26,26 @@ import {
 
 import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
-import { openPopup, closePopup, handleClickOnOverlay } from "./utils.js";
+// import { openPopup, closePopup, handleClickOnOverlay } from "./utils.js";
 
 import Section from "./Section.js";
+import Popup from "./Popup.js";
+import PopupWithImage from './PopupWithImage.js';
 
-const handleImagePreview = (card) => {
-    imagePopupGallery.src = card._link;
-    imagePopupGallery.alt = card._name;
-    titlePopupGallery.textContent = card._name;
+const editPopup = new Popup(".popup_type_popup-edit-profile");
+editPopup.setEventListeners();
+const addPopup = new Popup(".popup_type_popup-add-card");
+addPopup.setEventListeners();
 
-    openPopup(galleryPopup);
-};
+const imagePopup = new PopupWithImage('.popup_type_popup-gallery');
+
+// function handleImagePreview(card) {
+//     imagePopupGallery.src = card._link;
+//     imagePopupGallery.alt = card._name;
+//     titlePopupGallery.textContent = card._name;
+
+//     // openPopup(galleryPopup);
+// }
 
 const cardList = new Section(
     {
@@ -45,7 +54,7 @@ const cardList = new Section(
             const card = new Card(
                 item,
                 CARD_ITEM_TEMPLATE_SELECTOR,
-                handleImagePreview
+                imagePopup.open
             );
             const cardElement = card.generateCard();
             cardList.addItem(cardElement);
@@ -55,33 +64,47 @@ const cardList = new Section(
 );
 cardList.renderItems();
 
-
 const editUserForm = new FormValidator(settings, editProfileForm);
 editUserForm.enableValidation();
-
 const newCardForm = new FormValidator(settings, addCardForm);
 newCardForm.enableValidation();
 
+
+// export const handleClickOnOverlay = (event) => {
+//     const popup = event.currentTarget;
+//     if (event.target !== popup) {
+//         return;
+//     }
+
+//     closePopup(popup);
+// };
+
+
 // Close popups
-editProfilePopup.addEventListener("click", handleClickOnOverlay);
-addCardPopup.addEventListener("click", handleClickOnOverlay);
-galleryPopup.addEventListener("click", handleClickOnOverlay);
-profileCloseButton.addEventListener("click", () =>
-    closePopup(editProfilePopup)
-);
-cardCloseButton.addEventListener("click", () => closePopup(addCardPopup));
-galleryCloseButton.addEventListener("click", () => closePopup(galleryPopup));
+
+// editProfilePopup.addEventListener("click", handleClickOnOverlay);
+// addCardPopup.addEventListener("click", handleClickOnOverlay);
+// galleryPopup.addEventListener("click", handleClickOnOverlay);
+
+
+// profileCloseButton.addEventListener("click", () => {
+//     // editPopup.close();
+// });
+// cardCloseButton.addEventListener("click", () => {
+//     // addPopup.close();
+// });
+galleryCloseButton.addEventListener("click", () => imagePopup.close());
 
 // Open popups
+
 profileEditButton.addEventListener("click", () => {
-    openPopup(editProfilePopup);
-    // const buttonElement = editUserForm.addInactiveButtonClass(saveButton);
+    editPopup.open();
     nameInput.value = authorName.textContent;
     jobInput.value = authorJob.textContent;
 });
 
 addCardButton.addEventListener("click", () => {
-    openPopup(addCardPopup);
+    addPopup.open();
     titleInput.value = "";
     linkInput.value = "";
     newCardForm.addInactiveButtonClass(saveButton);
@@ -92,7 +115,7 @@ editProfileForm.addEventListener("submit", (e) => {
     e.preventDefault();
     authorName.textContent = nameInput.value;
     authorJob.textContent = jobInput.value;
-    closePopup(editProfilePopup);
+    editPopup.close();
 });
 addCardForm.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -102,9 +125,9 @@ addCardForm.addEventListener("submit", (e) => {
             link: linkInput.value,
         },
         CARD_ITEM_TEMPLATE_SELECTOR,
-        handleImagePreview
+        imagePopup.open
     );
     const cardElement = newCard.generateCard();
     container.prepend(cardElement);
-    closePopup(addCardPopup);
+    addPopup.close();
 });
