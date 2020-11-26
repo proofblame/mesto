@@ -1,4 +1,4 @@
-
+import './pages/index.css';
 import {
     editProfileForm,
     nameInput,
