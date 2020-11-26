@@ -22,30 +22,63 @@ import {
     titlePopupGallery,
     settings,
     initialCards,
+    profileSelector,
 } from "./constants.js";
 
 import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
-// import { openPopup, closePopup, handleClickOnOverlay } from "./utils.js";
 
 import Section from "./Section.js";
-import Popup from "./Popup.js";
-import PopupWithImage from './PopupWithImage.js';
+import PopupWithImage from "./PopupWithImage.js";
+import PopupWithForm from "./PopupWithForm.js";
+import UserInfo from "./UserInfo.js";
 
-const editPopup = new Popup(".popup_type_popup-edit-profile");
+// Попап редактирования профиля
+const userInfo = new UserInfo(profileSelector);
+
+const editPopup = new PopupWithForm({
+    popupSelector: ".popup_type_popup-edit-profile",
+    handleFormSubmit: (formData) => {
+        userInfo.setUserInfo(formData);
+    },
+});
 editPopup.setEventListeners();
-const addPopup = new Popup(".popup_type_popup-add-card");
+
+profileEditButton.addEventListener("click", () => {
+    editPopup.open();
+    const inputValues = userInfo.getUserInfo();
+    nameInput.value = inputValues.name;
+    jobInput.value = inputValues.job;
+});
+
+// Попап добавления новой карточки
+
+const addPopup = new PopupWithForm({
+    popupSelector: ".popup_type_popup-add-card",
+    handleFormSubmit: (formData) => {
+        const newCard = new Card(
+            {
+                name: formData.name,
+                link: formData.link,
+            },
+            CARD_ITEM_TEMPLATE_SELECTOR,
+            imagePopup.open
+        );
+        const cardElement = newCard.generateCard();
+        container.prepend(cardElement);
+    },
+});
 addPopup.setEventListeners();
 
-const imagePopup = new PopupWithImage('.popup_type_popup-gallery');
+addCardButton.addEventListener("click", () => {
+    addPopup.open();
+    titleInput.value = "";
+    linkInput.value = "";
+    newCardForm.addInactiveButtonClass(saveButton);
+});
 
-// function handleImagePreview(card) {
-//     imagePopupGallery.src = card._link;
-//     imagePopupGallery.alt = card._name;
-//     titlePopupGallery.textContent = card._name;
+const imagePopup = new PopupWithImage(".popup_type_popup-gallery");
 
-//     // openPopup(galleryPopup);
-// }
 
 const cardList = new Section(
     {
@@ -70,64 +103,6 @@ const newCardForm = new FormValidator(settings, addCardForm);
 newCardForm.enableValidation();
 
 
-// export const handleClickOnOverlay = (event) => {
-//     const popup = event.currentTarget;
-//     if (event.target !== popup) {
-//         return;
-//     }
-
-//     closePopup(popup);
-// };
-
-
-// Close popups
-
-// editProfilePopup.addEventListener("click", handleClickOnOverlay);
-// addCardPopup.addEventListener("click", handleClickOnOverlay);
-// galleryPopup.addEventListener("click", handleClickOnOverlay);
-
-
-// profileCloseButton.addEventListener("click", () => {
-//     // editPopup.close();
-// });
-// cardCloseButton.addEventListener("click", () => {
-//     // addPopup.close();
-// });
 galleryCloseButton.addEventListener("click", () => imagePopup.close());
 
-// Open popups
 
-profileEditButton.addEventListener("click", () => {
-    editPopup.open();
-    nameInput.value = authorName.textContent;
-    jobInput.value = authorJob.textContent;
-});
-
-addCardButton.addEventListener("click", () => {
-    addPopup.open();
-    titleInput.value = "";
-    linkInput.value = "";
-    newCardForm.addInactiveButtonClass(saveButton);
-});
-
-// Submit handlers
-editProfileForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    authorName.textContent = nameInput.value;
-    authorJob.textContent = jobInput.value;
-    editPopup.close();
-});
-addCardForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const newCard = new Card(
-        {
-            name: titleInput.value,
-            link: linkInput.value,
-        },
-        CARD_ITEM_TEMPLATE_SELECTOR,
-        imagePopup.open
-    );
-    const cardElement = newCard.generateCard();
-    container.prepend(cardElement);
-    addPopup.close();
-});

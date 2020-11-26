@@ -50,6 +50,11 @@ export const settings = {
     errorClass: "error",
 };
 
+export const profileSelector = {
+    nameSelector: ".profile__author",
+    jobSelector: ".profile__author-status"
+}
+
 export const initialCards = [
     {
         name: "Архыз",
