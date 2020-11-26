@@ -4,7 +4,7 @@
   "description": "### About ------------ Данный проект является четвертой проектной работой курса \"Веб-разработчик\",  а также первой работой по изучению JavaScript. Работа JavaScript реализована в кнопке \"Редактировать\", нажав на которую, можно внести изменения в информацию о человеке.",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --mode production",
+    "build": "rm -rf dist && webpack --mode production",
     "dev": "webpack serve"
   },
   "repository": {
@@ -24,7 +24,7 @@
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@babel/preset-env": "^7.12.7",
-    "babel-loader": "^8.2.1",
+    "babel-loader": "^8.2.2",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^5.0.1",
     "html-webpack-plugin": "^4.5.0",
