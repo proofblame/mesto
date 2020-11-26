@@ -1,3 +1,4 @@
+
 import {
     editProfileForm,
     nameInput,
@@ -20,7 +21,6 @@ import Section from "./scripts/Section.js";
 import PopupWithImage from "./scripts/PopupWithImage.js";
 import PopupWithForm from "./scripts/PopupWithForm.js";
 import UserInfo from "./scripts/UserInfo.js";
-
 // Рендер карточек из массива
 // Создание экземпляра класса отображения карточек на странице
 const cardList = new Section(

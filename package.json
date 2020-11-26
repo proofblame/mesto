@@ -1,0 +1,36 @@
+{
+  "name": "mesto",
+  "version": "0.0.1",
+  "description": "### About ------------ Данный проект является четвертой проектной работой курса \"Веб-разработчик\",  а также первой работой по изучению JavaScript. Работа JavaScript реализована в кнопке \"Редактировать\", нажав на которую, можно внести изменения в информацию о человеке.",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode production",
+    "dev": "webpack serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/proofblame/mesto.git"
+  },
+  "author": "Timur Marokko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/proofblame/mesto/issues"
+  },
+  "homepage": "https://github.com/proofblame/mesto#readme",
+  "dependencies": {
+    "core-js": "^3.8.0",
+    "jquery": "^3.5.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.9",
+    "@babel/preset-env": "^7.12.7",
+    "babel-loader": "^8.2.1",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^5.0.1",
+    "html-webpack-plugin": "^4.5.0",
+    "mini-css-extract-plugin": "^1.3.1",
+    "webpack": "^5.8.0",
+    "webpack-cli": "^4.2.0",
+    "webpack-dev-server": "^3.11.0"
+  }
+}
