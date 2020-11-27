@@ -19,7 +19,8 @@
   "homepage": "https://github.com/proofblame/mesto#readme",
   "dependencies": {
     "core-js": "^3.8.0",
-    "jquery": "^3.5.1"
+    "jquery": "^3.5.1",
+    "style-loader": "^2.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
