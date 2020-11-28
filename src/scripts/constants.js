@@ -15,7 +15,6 @@ export const addCardForm = addCardPopup.querySelector(".popup-form_type_add-card
 // Open buttons
 export const profileEditButton = document.querySelector(".profile__edit-button");
 export const addCardButton = document.querySelector(".profile__add-button");
-export const saveButton = document.querySelector(".popup__save-button");
 
 // Template
 export const CARD_ITEM_TEMPLATE_SELECTOR = ".elements__items";

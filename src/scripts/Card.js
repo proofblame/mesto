@@ -17,9 +17,10 @@ export class Card {
 
     generateCard() {
         this._element = this._getTemplate();
+        this._image = this._element.querySelector(".element__image");
         this._setEventListeners();
-        this._element.querySelector(".element__image").src = this._link;
-        this._element.querySelector(".element__image").alt = this._name;
+        this._image.src = this._link;
+        this._image.alt = this._name;
         this._element.querySelector(
             ".element__figcaption"
         ).textContent = this._name;
@@ -35,6 +36,7 @@ export class Card {
 
     _handleDeleteCard() {
         this._element.remove();
+        this._element = null;
     }
 
     _setEventListeners() {

@@ -4,7 +4,7 @@
   "description": "### About ------------ Данный проект является четвертой проектной работой курса \"Веб-разработчик\",  а также первой работой по изучению JavaScript. Работа JavaScript реализована в кнопке \"Редактировать\", нажав на которую, можно внести изменения в информацию о человеке.",
   "main": "index.js",
   "scripts": {
-    "build": "rm -rf dist && webpack --mode production",
+    "build": "rimraf dist && webpack",
     "dev": "webpack serve"
   },
   "repository": {
@@ -18,11 +18,11 @@
   },
   "homepage": "https://github.com/proofblame/mesto#readme",
   "dependencies": {
-    "core-js": "^3.8.0",
-    "jquery": "^3.5.1",
-    "style-loader": "^2.0.0"
+    "core-js": "^3.8.0"
   },
   "devDependencies": {
+    "jquery": "^3.5.1",
+    "style-loader": "^2.0.0",
     "@babel/core": "^7.12.9",
     "@babel/preset-env": "^7.12.7",
     "autoprefixer": "^10.0.4",

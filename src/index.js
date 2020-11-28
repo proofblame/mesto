@@ -1,4 +1,4 @@
-import './pages/index.css';
+import "./pages/index.css";
 import {
     editProfileForm,
     nameInput,
@@ -6,7 +6,6 @@ import {
     addCardForm,
     profileEditButton,
     addCardButton,
-    saveButton,
     CARD_ITEM_TEMPLATE_SELECTOR,
     container,
     settings,
@@ -21,18 +20,29 @@ import Section from "./scripts/Section.js";
 import PopupWithImage from "./scripts/PopupWithImage.js";
 import PopupWithForm from "./scripts/PopupWithForm.js";
 import UserInfo from "./scripts/UserInfo.js";
+
+// Создание экземпляра класса (карточки)
+const instantiationCard = (item) => {
+    const card = new Card(
+        item,
+        CARD_ITEM_TEMPLATE_SELECTOR,
+        {
+            handleCardClick: (name, link) => {
+                imagePopup.open(name, link);
+            },
+        }
+    );
+    return card;
+};
+
 // Рендер карточек из массива
-// Создание экземпляра класса отображения карточек на странице
+
 const cardList = new Section(
     {
         items: initialCards,
         renderer: (item) => {
-            const card = new Card(item, CARD_ITEM_TEMPLATE_SELECTOR, {
-                handleCardClick: (name, link) => {
-                    imagePopup.open(name, link);
-                },
-            });
-            const cardElement = card.generateCard();
+            const newCard = instantiationCard(item);
+            const cardElement = newCard.generateCard();
             cardList.addItem(cardElement);
         },
     },
@@ -66,21 +76,10 @@ const userInfo = new UserInfo(profileSelector);
 // Создание экземпляра класса попапа добавления карточки
 const addPopup = new PopupWithForm({
     popupSelector: ".popup_type_popup-add-card",
-    handleFormSubmit: (formData) => {
-        const newCard = new Card(
-            {
-                name: formData.name,
-                link: formData.link,
-            },
-            CARD_ITEM_TEMPLATE_SELECTOR,
-            {
-                handleCardClick: (name, link) => {
-                    imagePopup.open(name, link);
-                },
-            }
-        );
+    handleFormSubmit: (item) => {
+        const newCard = instantiationCard(item);
         const cardElement = newCard.generateCard();
-        container.prepend(cardElement);
+        cardList.addItem(cardElement);
     },
 });
 addPopup.setEventListeners();
@@ -102,5 +101,5 @@ profileEditButton.addEventListener("click", () => {
 // Слушатель открытия попапа добавления карточки
 addCardButton.addEventListener("click", () => {
     addPopup.open();
-    newCardForm.addInactiveButtonClass(saveButton);
+    newCardForm.addInactiveButtonClass();
 });
