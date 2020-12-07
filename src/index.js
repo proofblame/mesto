@@ -20,18 +20,95 @@ import Section from "./scripts/Section.js";
 import PopupWithImage from "./scripts/PopupWithImage.js";
 import PopupWithForm from "./scripts/PopupWithForm.js";
 import UserInfo from "./scripts/UserInfo.js";
+import { resolve } from "core-js/fn/promise";
+
+// const start = () => {
+//     fetch("https://mesto.nomoreparties.co/v1/cohort-18/cards", {
+//         headers: {
+//             authorization: "45380a0b-d1c3-4f21-8b0c-7fe08b9cb145",
+//         },
+//     })
+//         .then((res) => res.json())
+//         .then((result) => {
+//             console.log(result);сщву
+
+//         });
+// }
+// start();
+
+// const apiUserInfo = () => {
+//     fetch('https://mesto.nomoreparties.co/v1/cohort-18/users/me', {
+//         headers: {
+//             authorization: "45380a0b-d1c3-4f21-8b0c-7fe08b9cb145",
+//         },
+//     })
+//     .then(res => res.json())
+//     .then((result) => {
+//         console.log(result)
+//     })
+// }
+// apiUserInfo();
+
+// const patchApiRequest = () => {
+//     fetch("https://mesto.nomoreparties.co/v1/cohort-18/users/me", {
+//         method: "PATCH",
+//         headers: {
+//             authorization: "45380a0b-d1c3-4f21-8b0c-7fe08b9cb145",
+//             "Content-Type": "application/json",
+//         },
+//         body: JSON.stringify({
+//             name: "Marie Skłodowska Curie",
+//             about: "Physicist and Chemist",
+//         }),
+//     })
+//     .then(res => res.json())
+//     .then((result) => {
+//         console.log(result)
+//     });
+// };
+// patchApiRequest();
+
+// const postApiRequest = () => {
+//     fetch("https://mesto.nomoreparties.co/v1/cohort-18/cards", {
+//         method: "POST",
+//         headers: {
+//             authorization: "45380a0b-d1c3-4f21-8b0c-7fe08b9cb145",
+//             "Content-Type": "application/json",
+//         },
+//         body: JSON.stringify({
+//             "likes": [],
+//             "_id": "5d1f0611d321eb4bdcd707dd",
+//             "name": "Торжок",
+//             "link": "https://cdn.pixabay.com/photo/2018/08/23/10/48/torzhok-3625636_960_720.jpg",
+//             "owner": {
+//                 "name": "Jacques Cousteau",
+//                 "about": "Sailor, researcher",
+//                 "avatar": "https://pictures.s3.yandex.net/frontend-developer/ava.jpg",
+//                 "_id": "ef5f7423f7f5e22bef4ad607",
+//                 "cohort": "local"
+//             },
+//             "createdAt": "2019-07-05T08:10:57.741Z"
+
+//         })
+//         })
+//     .then(res => res.json())
+//     .then((result) => {
+//         console.log(result)
+//     });
+// };
+// postApiRequest();
+
+
+
+
 
 // Создание экземпляра класса (карточки)
 const instantiationCard = (item) => {
-    const card = new Card(
-        item,
-        CARD_ITEM_TEMPLATE_SELECTOR,
-        {
-            handleCardClick: (name, link) => {
-                imagePopup.open(name, link);
-            },
-        }
-    );
+    const card = new Card(item, CARD_ITEM_TEMPLATE_SELECTOR, {
+        handleCardClick: (name, link) => {
+            imagePopup.open(name, link);
+        },
+    });
     return card;
 };
 
@@ -49,7 +126,6 @@ const cardList = new Section(
     container
 );
 cardList.renderItems();
-
 
 // Создание экземпляров классов
 
