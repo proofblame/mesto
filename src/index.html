@@ -81,13 +81,41 @@
             <button name="close-button" type="button" value="" class="popup__close-button buttons"></button>
         </div>
     </section>
+
+    <section class="popup section__popup popup_type_popup-confirm">
+        <div class="popup__container">
+            <form name="delete-confirm" class="popup__form popup-form_type_delete-confirm" novalidate>
+                <h2 class="popup__heading section__subtitle">Вы уверены?</h2>
+                <input name="save-button" type="submit" value="Да" class="popup__save-button">
+                <button name="close-button" type="button" value="" class="popup__close-button buttons"></button>
+            </form>
+        </div>
+    </section>
+
+    <section class="popup section__popup popup_type_popup-update-profile">
+        <div class="popup__container">
+            <form name="update-user" class="popup__form popup-form_type_update-profile" novalidate>
+                <h2 class="popup__heading section__subtitle">Обновить аватар</h2>
+                <fieldset class="popup__fields">
+                        <input name="name" type="text" value="" class="popup__input popup__input_name" id="user-name"
+                            minlength="2" maxlength="40" required autocomplete="off">
+                </fieldset>
+                <input name="save-button" type="submit" value="Сохранить" class="popup__save-button">
+                <button name="close-button" type="button" value="" class="popup__close-button buttons"></button>
+            </form>
+        </div>
+    </section>
+
     <template class="elements__items">
         <li class="elements__item">
             <figure class="element">
                 <img src="" alt="" class="element__image">
                 <div class="element__body">
                     <p class="element__figcaption section__subtitle"></p>
-                    <button class="element__like-button buttons" type="button"></button>
+                    <div class="element__like-group">
+                        <button class="element__like-button buttons" type="button"></button>
+                        <div class="element__like-count">2</div>
+                    </div>
                 </div>
                 <button class="element__delete-button buttons" type="button"></button>
             </figure>
