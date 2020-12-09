@@ -11,6 +11,7 @@ import {
     settings,
     initialCards,
     profileSelector,
+    userId
 } from "./scripts/constants.js";
 
 import { Card } from "./scripts/Card.js";
@@ -20,112 +21,65 @@ import Section from "./scripts/Section.js";
 import PopupWithImage from "./scripts/PopupWithImage.js";
 import PopupWithForm from "./scripts/PopupWithForm.js";
 import UserInfo from "./scripts/UserInfo.js";
+import Api from "./scripts/Api.js";
 import { resolve } from "core-js/fn/promise";
+import { data } from "jquery";
 
-// const start = () => {
-//     fetch("https://mesto.nomoreparties.co/v1/cohort-18/cards", {
-//         headers: {
-//             authorization: "45380a0b-d1c3-4f21-8b0c-7fe08b9cb145",
-//         },
-//     })
-//         .then((res) => res.json())
-//         .then((result) => {
-//             console.log(result);сщву
+// Получение данных с сервера
+const api = new Api({
+    baseUrl: "https://mesto.nomoreparties.co/v1/cohort-18",
+    headers: {
+        authorization: "45380a0b-d1c3-4f21-8b0c-7fe08b9cb145",
+        "Content-Type": "application/json",
+    },
+});
 
-//         });
-// }
-// start();
+// Получение карточек с сервера
+api.getInitialCards()
+    .then((cards) => {
+        renderInitialCards(cards);
+    })
+    .catch((err) => {
+        console.log(err);
+    });
 
-// const apiUserInfo = () => {
-//     fetch('https://mesto.nomoreparties.co/v1/cohort-18/users/me', {
-//         headers: {
-//             authorization: "45380a0b-d1c3-4f21-8b0c-7fe08b9cb145",
-//         },
-//     })
-//     .then(res => res.json())
-//     .then((result) => {
-//         console.log(result)
-//     })
-// }
-// apiUserInfo();
+// Рендер начальных карточек
+const renderInitialCards = (cards) => {
+    const cardList = new Section(
+        {
+            items: cards,
+            renderer: (item) => {
+                const newCard = instantiationCard(item);
+                const cardElement = newCard.generateCard();
+                cardList.addItem(cardElement);
+            },
+        },
+        container
+    );
+    cardList.renderItems();
+};
 
-// const patchApiRequest = () => {
-//     fetch("https://mesto.nomoreparties.co/v1/cohort-18/users/me", {
-//         method: "PATCH",
-//         headers: {
-//             authorization: "45380a0b-d1c3-4f21-8b0c-7fe08b9cb145",
-//             "Content-Type": "application/json",
-//         },
-//         body: JSON.stringify({
-//             name: "Marie Skłodowska Curie",
-//             about: "Physicist and Chemist",
-//         }),
-//     })
-//     .then(res => res.json())
-//     .then((result) => {
-//         console.log(result)
-//     });
-// };
-// patchApiRequest();
+// Добавление новой карточки
+api.addCard()
+    .then((name, link) => {
+        instantiationCard(item);
+    })
+    .catch((err) => {
+        console.log(err);
+    });
 
-// const postApiRequest = () => {
-//     fetch("https://mesto.nomoreparties.co/v1/cohort-18/cards", {
-//         method: "POST",
-//         headers: {
-//             authorization: "45380a0b-d1c3-4f21-8b0c-7fe08b9cb145",
-//             "Content-Type": "application/json",
-//         },
-//         body: JSON.stringify({
-//             "likes": [],
-//             "_id": "5d1f0611d321eb4bdcd707dd",
-//             "name": "Торжок",
-//             "link": "https://cdn.pixabay.com/photo/2018/08/23/10/48/torzhok-3625636_960_720.jpg",
-//             "owner": {
-//                 "name": "Jacques Cousteau",
-//                 "about": "Sailor, researcher",
-//                 "avatar": "https://pictures.s3.yandex.net/frontend-developer/ava.jpg",
-//                 "_id": "ef5f7423f7f5e22bef4ad607",
-//                 "cohort": "local"
-//             },
-//             "createdAt": "2019-07-05T08:10:57.741Z"
-
-//         })
-//         })
-//     .then(res => res.json())
-//     .then((result) => {
-//         console.log(result)
-//     });
-// };
-// postApiRequest();
-
-
-
-
-
-// Создание экземпляра класса (карточки)
+// Создание карточки
 const instantiationCard = (item) => {
-    const card = new Card(item, CARD_ITEM_TEMPLATE_SELECTOR, {
+    const card = new Card(item, userId, CARD_ITEM_TEMPLATE_SELECTOR, {
         handleCardClick: (name, link) => {
             imagePopup.open(name, link);
+            console.log(item)
         },
+        handleLikeClick: (card) => {},
+        handleDeleteIconClick: (card) => {},
     });
     return card;
 };
-
-// Рендер карточек из массива
-
-const cardList = new Section(
-    {
-        items: initialCards,
-        renderer: (item) => {
-            const newCard = instantiationCard(item);
-            const cardElement = newCard.generateCard();
-            cardList.addItem(cardElement);
-        },
-    },
-    container
-);
-cardList.renderItems();
 
 // Создание экземпляров классов
 
@@ -155,7 +109,7 @@ const addPopup = new PopupWithForm({
     handleFormSubmit: (item) => {
         const newCard = instantiationCard(item);
         const cardElement = newCard.generateCard();
-        cardList.addItem(cardElement);
+        container.prepend(cardElement);
     },
 });
 addPopup.setEventListeners();

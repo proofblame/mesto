@@ -1,2 +1,39 @@
 Токен: 45380a0b-d1c3-4f21-8b0c-7fe08b9cb145
 Идентификатор группы: cohort-18
+
+Лайки:
+1. отрендерить лайки на карточке:
+2. сделать счетчик своих лайков:
+    - при нажатии на лайк посылать запрос на сервер с добавлением своего лайка в массив лайков;
+    - принять ответ от сервера и отрендерить заново количество лайков;
+    - поиск своего лайка из массива лайков, если есть, то изменить цвет лайка, если нет, то оставить как есть.
+// Функция генерации изначальных карточек
+const generateInitialCards = (cards) => {
+  const defaultCardGrid = new Section({
+    items: cards,
+    renderer: (item) => {
+      const card = new Card (item, userId, gridCardTemplateId, 
+        {
+          handleCardClick: (name, link) => {
+          popupWithImage.open(name, link);
+        },
+        likeCardHandler: () => {
+          const likedCard = card.likedCard();
+          const resultApi = likedCard ? api.unlikeCard(card.getIdCard()) : api.likeCard(card.getIdCard());
+
+          resultApi.then(data => {
+              card.setLikes(data.likes) // Обновляем список лайкнувших карточку
+              card.renderLikes(); // Отрисовываем на клиенте
+            });
+        },
+        deleteCardHandler: () => {
+          popupConfirm.open(card);
+        }
+      }, item._id);
+      const cardElement = card.generateCard();
+      defaultCardGrid.addItem(cardElement);
+    }
+  }, container);
+  defaultCardGrid.renderItems();
+
+}
