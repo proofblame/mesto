@@ -11,7 +11,7 @@ import {
     settings,
     initialCards,
     profileSelector,
-    userId
+    userId,
 } from "./scripts/constants.js";
 
 import { Card } from "./scripts/Card.js";
@@ -59,26 +59,38 @@ const renderInitialCards = (cards) => {
     cardList.renderItems();
 };
 
-// Добавление новой карточки
-api.addCard()
-    .then((name, link) => {
-        instantiationCard(item);
-    })
-    .catch((err) => {
-        console.log(err);
-    });
-
 // Создание карточки
 const instantiationCard = (item) => {
     const card = new Card(item, userId, CARD_ITEM_TEMPLATE_SELECTOR, {
         handleCardClick: (name, link) => {
             imagePopup.open(name, link);
-            console.log(item)
         },
-        handleLikeClick: (card) => {},
-        handleDeleteIconClick: (card) => {},
+        handleLikeClick: () => {
+            const likedCard = card.qualifierLikes();
+            const resultApi = likedCard
+                ? api.delLikes(card.getCardId())
+                : api.setLikes(card.getCardId());
+
+            resultApi.then((item) => {
+                card.setLikes(item.likes);
+                card.renderLikes();
+            });
+        },
+        handleDeleteIconClick: () => {},
     });
     return card;
+};
+
+// Добавление новой карточки
+const addNewCardHandler = () => {
+    const inputTitle = document.querySelector(".popup__input_title").value;
+    const inputLink = document.querySelector(".popup__input_link").value;
+    api.addNewCard(inputTitle, inputLink).then((item) => {
+        console.log(item);
+        const newCard = instantiationCard(item);
+        const cardElement = newCard.generateCard();
+        container.prepend(cardElement);
+    });
 };
 
 // Создание экземпляров классов
@@ -104,14 +116,12 @@ editPopup.setEventListeners();
 const userInfo = new UserInfo(profileSelector);
 
 // Создание экземпляра класса попапа добавления карточки
-const addPopup = new PopupWithForm({
-    popupSelector: ".popup_type_popup-add-card",
-    handleFormSubmit: (item) => {
-        const newCard = instantiationCard(item);
-        const cardElement = newCard.generateCard();
-        container.prepend(cardElement);
+const addPopup = new PopupWithForm(
+    {
+        popupSelector: ".popup_type_popup-add-card",
     },
-});
+    addNewCardHandler
+);
 addPopup.setEventListeners();
 
 // Создание экземпляра класса попапа открытия галереи

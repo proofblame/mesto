@@ -1,4 +1,3 @@
-
 export default class Api {
     constructor({ baseUrl, headers }) {
         this._url = baseUrl;
@@ -9,16 +8,15 @@ export default class Api {
         return fetch(`${this._url}/cards`, {
             method: "GET",
             headers: this._headers,
-        })
-            .then((res) => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(`Ошибка: ${res.status}`);
-            })
+        }).then((res) => {
+            if (res.ok) {
+                return res.json();
+            }
+            return Promise.reject(`Ошибка: ${res.status}`);
+        });
     }
     // Добавить новую карточку
-    addCard(name, link) {
+    addNewCard(name, link) {
         return fetch(`${this._url}/cards`, {
             method: "POST",
             headers: this._headers,
@@ -26,35 +24,59 @@ export default class Api {
                 name: name,
                 link: link,
             }),
-        })
-            .then((res) => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(`Ошибка: ${res.status}`);
-            })
+        }).then((res) => {
+            if (res.ok) {
+                return res.json();
+            }
+            return Promise.reject(`Ошибка: ${res.status}`);
+        });
     }
-    // Получить данные пользователя
-    getUserInfo() {
-        fetch(`${this._url}/users/me`, {
+    // Поставить лайки
+    setLikes(cardId) {
+        return fetch(`${this._url}/cards/likes/${cardId}`, {
+            method: "PUT",
             headers: this._headers,
-        })
-            .then((res) => res.json())
-            .catch((err) => console.log(err));
+        }).then((res) => {
+            if (res.ok) {
+                return res.json();
+            }
+            return Promise.reject(`Ошибка: ${res.status}`);
+        });
     }
-// Отредактировать данные пользователя
-    editUserInfo() {
-        fetch(`${this._url}/users/me`, {
-            method: "PATH",
+    // Удалить лайки
+    delLikes(cardId) {
+        return fetch(`${this._url}/cards/likes/${cardId}`, {
+            method: "DELETE",
             headers: this._headers,
-            body: JSON.stringify({
-                name: 'name',
-                about: 'job'
-            })
-        })
-            .then((res) => res.json())
-            .catch((err) => console.log(err));
+        }).then((res) => {
+            if (res.ok) {
+                return res.json();
+            }
+            return Promise.reject(`Ошибка: ${res.status}`);
+        });
     }
+
+    //     // Получить данные пользователя
+    //     getUserInfo() {
+    //         fetch(`${this._url}/users/me`, {
+    //             headers: this._headers,
+    //         })
+    //             .then((res) => res.json())
+    //             .catch((err) => console.log(err));
+    //     }
+    // // Отредактировать данные пользователя
+    //     editUserInfo() {
+    //         fetch(`${this._url}/users/me`, {
+    //             method: "PATH",
+    //             headers: this._headers,
+    //             body: JSON.stringify({
+    //                 name: 'name',
+    //                 about: 'job'
+    //             })
+    //         })
+    //             .then((res) => res.json())
+    //             .catch((err) => console.log(err));
+    //     }
 
     // apiUserInfo();
 
