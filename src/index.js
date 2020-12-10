@@ -9,12 +9,14 @@ import {
     CARD_ITEM_TEMPLATE_SELECTOR,
     container,
     settings,
-    initialCards,
     profileSelector,
     userId,
     profileAuthor,
     profileJob,
     avatarAuthor,
+    inputLinkAvatar,
+    openAvatarButton,
+    popupAvatarForm,
 } from "./scripts/constants.js";
 
 import { Card } from "./scripts/Card.js";
@@ -74,7 +76,6 @@ const instantiationCard = (item) => {
             const resultApi = likedCard
                 ? api.delLikes(card.getCardId())
                 : api.setLikes(card.getCardId());
-
             resultApi.then((item) => {
                 card.setLikes(item.likes);
                 card.renderLikes();
@@ -117,6 +118,7 @@ api.getUserInfo().then((data) => {
     avatarAuthor.src = data.avatar;
 });
 
+// Редактирование данных пользователя
 const editProfileHandler = () => {
     const profile = {
         name: nameInput.value,
@@ -124,18 +126,33 @@ const editProfileHandler = () => {
     };
     editPopup.savingButton("Сохранение...");
     api.editUserInfo(profile.name, profile.job).finally(() => {
-        userInfo.setUserInfo(profile)
+        userInfo.setUserInfo(profile);
     });
-    // (formData) => {
-    //     userInfo.setUserInfo(formData);
-    // },
 };
+
+// Редактирование аватара пользователя
+const editAvatarHandler = () => {
+    avatarAuthor.src = inputLinkAvatar.value;
+    editAvatarPopup.savingButton("Сохранение...");
+
+    api.editUserAvatar(inputLinkAvatar.value).finally(() => {
+        editAvatarPopup.close();
+    });
+};
+
+// Создание экземпляра класса попапа редактирования аватара
+const editAvatarPopup = new PopupWithForm(
+    ".popup_type_popup-update-avatar",
+    editAvatarHandler
+);
+editAvatarPopup.setEventListeners();
 
 // Создание экземпляра класса попапа редактирования профиля
 const userInfo = new UserInfo(profileSelector);
 
 // Создание экземпляра класса попапа редактирования формы профиля
-const editPopup = new PopupWithForm(".popup_type_popup-edit-profile",
+const editPopup = new PopupWithForm(
+    ".popup_type_popup-edit-profile",
     editProfileHandler
 );
 editPopup.setEventListeners();
@@ -147,8 +164,12 @@ const popupWithSubmit = new PopupWithSubmit(
 );
 popupWithSubmit.setEventListeners();
 
+// Включение валидации в попапе редактирования аватара
+const editavatarForm = new FormValidator(settings, editProfileForm);
+editavatarForm.enableValidation();
+
 // Включение валидации в попапе редактирования профиля
-const editUserForm = new FormValidator(settings, editProfileForm);
+const editUserForm = new FormValidator(settings, popupAvatarForm);
 editUserForm.enableValidation();
 
 // Включение валидации в попапе добавления карточки
@@ -156,7 +177,8 @@ const newCardForm = new FormValidator(settings, addCardForm);
 newCardForm.enableValidation();
 
 // Создание экземпляра класса попапа добавления карточки
-const addPopup = new PopupWithForm(".popup_type_popup-add-card",
+const addPopup = new PopupWithForm(
+    ".popup_type_popup-add-card",
     addNewCardHandler
 );
 addPopup.setEventListeners();
@@ -179,4 +201,8 @@ profileEditButton.addEventListener("click", () => {
 addCardButton.addEventListener("click", () => {
     addPopup.open();
     newCardForm.addInactiveButtonClass();
+});
+// Слушатель открытия попапа  редактирования аватара
+openAvatarButton.addEventListener("click", () => {
+    editAvatarPopup.open();
 });

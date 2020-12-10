@@ -4,7 +4,7 @@
     font-size: 42px;
     line-height: 56px;
     grid-area: profile__author;
-    max-width: 295px;
+    width: 100%;
 }
 
 @media screen and (max-width: 697px) {

@@ -40,36 +40,9 @@ export const profileSelector = {
 export const profileAuthor = document.querySelector(profileSelector.nameSelector);
 export const profileJob = document.querySelector(profileSelector.jobSelector);
 export const avatarAuthor = document.querySelector('.profile__avatar');
+export const popupAvatar = document.querySelector('.popup_type_popup-update-avatar');
+export const popupAvatarForm = popupAvatar.querySelector('.popup-form_type_update-avatar');
 
-export const initialCards = [
-    {
-        name: "Архыз",
-        link:
-            "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-    },
-    {
-        name: "Челябинская область",
-        link:
-            "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-    },
-    {
-        name: "Иваново",
-        link:
-            "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-    },
-    {
-        name: "Камчатка",
-        link:
-            "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-    },
-    {
-        name: "Холмогорский район",
-        link:
-            "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-    },
-    {
-        name: "Байкал",
-        link:
-            "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-    },
-];
+export const inputLinkAvatar = popupAvatar.querySelector('.popup__input_link');
+export const openAvatarButton = document.querySelector('.profile__wrap');
+

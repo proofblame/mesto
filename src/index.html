@@ -19,11 +19,16 @@
     <main class="content section section__content">
 
         <section class="profile section__profile">
-            <img src="<%=require('./images/jacques-photo.png')%>" alt="Портрет Жак-Ива Кусто" class="profile__avatar">
+            <div class="profile__wrap">
+                <img src="<%=require('./images/jacques-photo.png')%>" alt="Портрет Жак-Ива Кусто"
+                    class="profile__avatar">
+                <img src="<%=require('./images/edit-avatar.svg')%>" alt="Смена аватара" class="profile__avatar-edit"> -->
+            </div>
+
             <div class="profile__info">
-                <h1 class="profile__author section__title">Жак-Ив Кусто</h1>
+                <h1 class="profile__author section__title"></h1>
                 <button type="button" class="profile__edit-button buttons"></button>
-                <p class="profile__author-status section__subtitle">Исследователь океана</p>
+                <p class="profile__author-status section__subtitle"></p>
             </div>
             <button type="button" class="profile__add-button buttons"></button>
         </section>
@@ -43,12 +48,13 @@
             <form name="new-card" class="popup__form popup-form_type_add-card" novalidate>
                 <h2 class="popup__heading section__subtitle">Новое место</h2>
                 <fieldset class="popup__fields">
-                        <input name="name" type="text" value="" placeholder="Название"
-                            class="popup__input popup__input_title" minlength="2" maxlength="30" required id="name-card" autocomplete="off">
-                        <span id="name-card-error" class="error"></span>
-                        <input name="link" type="url" value="" placeholder="Ссылка на картинку"
-                            class="popup__input popup__input_link" required id="link" autocomplete="off">
-                        <span class='error' id='link-error'></span>
+                    <input name="name" type="text" value="" placeholder="Название"
+                        class="popup__input popup__input_title" minlength="2" maxlength="30" required id="name-card"
+                        autocomplete="off">
+                    <span id="name-card-error" class="error"></span>
+                    <input name="link" type="url" value="" placeholder="Ссылка на картинку"
+                        class="popup__input popup__input_link" required id="link" autocomplete="off">
+                    <span class='error' id='link-error'></span>
                 </fieldset>
                 <input name="save-button" type="submit" value="Сохранить" class="popup__save-button">
                 <button name="close-button" type="button" value="" class="popup__close-button buttons"></button>
@@ -61,12 +67,12 @@
             <form name="edit-user" class="popup__form popup-form_type_edit-profile" novalidate>
                 <h2 class="popup__heading section__subtitle">Редактировать профиль</h2>
                 <fieldset class="popup__fields">
-                        <input name="name" type="text" value="" class="popup__input popup__input_name" id="user-name"
-                            minlength="2" maxlength="40" required autocomplete="off">
-                        <span id="user-name-error" class="error"></span>
-                        <input name="job" type="text" value="" class="popup__input popup__input_job" id="about"
-                            minlength="2" maxlength="200" required autocomplete="off">
-                        <span id="about-error" class="error"></span>
+                    <input name="name" type="text" value="" class="popup__input popup__input_name" id="user-name"
+                        minlength="2" maxlength="40" required autocomplete="off">
+                    <span id="user-name-error" class="error"></span>
+                    <input name="job" type="text" value="" class="popup__input popup__input_job" id="about"
+                        minlength="2" maxlength="200" required autocomplete="off">
+                    <span id="about-error" class="error"></span>
                 </fieldset>
                 <input name="save-button" type="submit" value="Сохранить" class="popup__save-button">
                 <button name="close-button" type="button" value="" class="popup__close-button buttons"></button>
@@ -92,13 +98,14 @@
         </div>
     </section>
 
-    <section class="popup section__popup popup_type_popup-update-profile">
+    <section class="popup section__popup popup_type_popup-update-avatar">
         <div class="popup__container">
-            <form name="update-user" class="popup__form popup-form_type_update-profile" novalidate>
+            <form name="update-user" class="popup__form popup-form_type_update-avatar" novalidate>
                 <h2 class="popup__heading section__subtitle">Обновить аватар</h2>
                 <fieldset class="popup__fields">
-                        <input name="name" type="text" value="" class="popup__input popup__input_name" id="user-name"
-                            minlength="2" maxlength="40" required autocomplete="off">
+                    <input name="link" type="url" value="" placeholder="Ссылка на картинку"
+                        class="popup__input popup__input_link" required id="link" autocomplete="off">
+                        <span class='error' id='link-error'></span>
                 </fieldset>
                 <input name="save-button" type="submit" value="Сохранить" class="popup__save-button">
                 <button name="close-button" type="button" value="" class="popup__close-button buttons"></button>
