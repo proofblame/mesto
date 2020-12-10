@@ -37,6 +37,10 @@ export const profileSelector = {
     jobSelector: ".profile__author-status"
 }
 
+export const profileAuthor = document.querySelector(profileSelector.nameSelector);
+export const profileJob = document.querySelector(profileSelector.jobSelector);
+export const avatarAuthor = document.querySelector('.profile__avatar');
+
 export const initialCards = [
     {
         name: "Архыз",

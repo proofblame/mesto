@@ -67,6 +67,36 @@ export default class Api {
             return Promise.reject(`Ошибка: ${res.status}`);
         });
     }
+    // Получить данные пользователя
+    getUserInfo() {
+        return fetch(`${this._url}/users/me`, {
+            method: "GET",
+            headers: this._headers,
+        }).then((res) => {
+            if (res.ok) {
+                return res.json();
+            }
+            return Promise.reject(`Ошибка: ${res.status}`);
+        });
+    }
+// Редактирование данных пользователя
+    editUserInfo(name, job) {
+        return fetch(`${this._url}/users/me`, {
+            method: "PATCH",
+            headers: this._headers,
+            body: JSON.stringify({
+                name: name,
+                about: job,
+            })
+        }).then((res) => {
+            if (res.ok) {
+                return res.json();
+            }
+            return Promise.reject(`Ошибка: ${res.status}`);
+        });
+    }
+
+
 
     //     // Получить данные пользователя
     //     getUserInfo() {

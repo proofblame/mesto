@@ -12,6 +12,9 @@ import {
     initialCards,
     profileSelector,
     userId,
+    profileAuthor,
+    profileJob,
+    avatarAuthor,
 } from "./scripts/constants.js";
 
 import { Card } from "./scripts/Card.js";
@@ -99,19 +102,50 @@ const addNewCardHandler = () => {
 // Удаление карточки
 const cardDeleteHandler = (card) => {
     api.deleteCard(card.getCardId())
-    .then((res) => {
-        card.deleteCard();
-    }).finally(() => {
-        popupWithSubmit.close();
-    })
-}
+        .then((res) => {
+            card.deleteCard();
+        })
+        .finally(() => {
+            popupWithSubmit.close();
+        });
+};
 
+// Получение данных пользователя
+api.getUserInfo().then((data) => {
+    profileAuthor.textContent = data.name;
+    profileJob.textContent = data.about;
+    avatarAuthor.src = data.avatar;
+});
 
+const editProfileHandler = () => {
+    const profile = {
+        name: nameInput.value,
+        job: jobInput.value,
+    };
+    editPopup.savingButton("Сохранение...");
+    api.editUserInfo(profile.name, profile.job).finally(() => {
+        userInfo.setUserInfo(profile)
+    });
+    // (formData) => {
+    //     userInfo.setUserInfo(formData);
+    // },
+};
+
+// Создание экземпляра класса попапа редактирования профиля
+const userInfo = new UserInfo(profileSelector);
+
+// Создание экземпляра класса попапа редактирования формы профиля
+const editPopup = new PopupWithForm(".popup_type_popup-edit-profile",
+    editProfileHandler
+);
+editPopup.setEventListeners();
 
 // Попап подтверждения удаления карточки
-const popupWithSubmit = new PopupWithSubmit(".popup_type_popup-confirm", (card) => cardDeleteHandler(card));
+const popupWithSubmit = new PopupWithSubmit(
+    ".popup_type_popup-confirm",
+    (card) => cardDeleteHandler(card)
+);
 popupWithSubmit.setEventListeners();
-
 
 // Включение валидации в попапе редактирования профиля
 const editUserForm = new FormValidator(settings, editProfileForm);
@@ -121,23 +155,8 @@ editUserForm.enableValidation();
 const newCardForm = new FormValidator(settings, addCardForm);
 newCardForm.enableValidation();
 
-// Создание экземпляра класса попапа редактирования формы профиля
-const editPopup = new PopupWithForm({
-    popupSelector: ".popup_type_popup-edit-profile",
-    handleFormSubmit: (formData) => {
-        userInfo.setUserInfo(formData);
-    },
-});
-editPopup.setEventListeners();
-
-// Создание экземпляра класса попапа редактирования профиля
-const userInfo = new UserInfo(profileSelector);
-
 // Создание экземпляра класса попапа добавления карточки
-const addPopup = new PopupWithForm(
-    {
-        popupSelector: ".popup_type_popup-add-card",
-    },
+const addPopup = new PopupWithForm(".popup_type_popup-add-card",
     addNewCardHandler
 );
 addPopup.setEventListeners();
@@ -161,5 +180,3 @@ addCardButton.addEventListener("click", () => {
     addPopup.open();
     newCardForm.addInactiveButtonClass();
 });
-
-
