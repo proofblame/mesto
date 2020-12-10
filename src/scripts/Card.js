@@ -47,6 +47,10 @@ export class Card {
 
         return this._element;
     }
+    // Удаление карточки
+    deleteCard() {
+        this._element.remove();
+    }
 
     // Рендерит количество лайки
     renderLikes() {

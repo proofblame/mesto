@@ -20,6 +20,7 @@ import { FormValidator } from "./scripts/FormValidator.js";
 import Section from "./scripts/Section.js";
 import PopupWithImage from "./scripts/PopupWithImage.js";
 import PopupWithForm from "./scripts/PopupWithForm.js";
+import PopupWithSubmit from "./scripts/PopupWithSubmit.js";
 import UserInfo from "./scripts/UserInfo.js";
 import Api from "./scripts/Api.js";
 import { resolve } from "core-js/fn/promise";
@@ -76,7 +77,9 @@ const instantiationCard = (item) => {
                 card.renderLikes();
             });
         },
-        handleDeleteIconClick: () => {},
+        handleDeleteIconClick: () => {
+            popupWithSubmit.open(card);
+        },
     });
     return card;
 };
@@ -93,7 +96,22 @@ const addNewCardHandler = () => {
     });
 };
 
-// Создание экземпляров классов
+// Удаление карточки
+const cardDeleteHandler = (card) => {
+    api.deleteCard(card.getCardId())
+    .then((res) => {
+        card.deleteCard();
+    }).finally(() => {
+        popupWithSubmit.close();
+    })
+}
+
+
+
+// Попап подтверждения удаления карточки
+const popupWithSubmit = new PopupWithSubmit(".popup_type_popup-confirm", (card) => cardDeleteHandler(card));
+popupWithSubmit.setEventListeners();
+
 
 // Включение валидации в попапе редактирования профиля
 const editUserForm = new FormValidator(settings, editProfileForm);
@@ -143,3 +161,5 @@ addCardButton.addEventListener("click", () => {
     addPopup.open();
     newCardForm.addInactiveButtonClass();
 });
+
+
