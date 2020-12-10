@@ -92,8 +92,8 @@ const instantiationCard = (item) => {
 const addNewCardHandler = () => {
     const inputTitle = document.querySelector(".popup__input_title").value;
     const inputLink = document.querySelector(".popup__input_link").value;
+    addPopup.savingButton("Сохранение...");
     api.addNewCard(inputTitle, inputLink).then((item) => {
-        console.log(item);
         const newCard = instantiationCard(item);
         const cardElement = newCard.generateCard();
         container.prepend(cardElement);
