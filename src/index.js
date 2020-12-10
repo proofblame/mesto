@@ -103,7 +103,7 @@ const addNewCardHandler = () => {
 // Удаление карточки
 const cardDeleteHandler = (card) => {
     api.deleteCard(card.getCardId())
-        .then((res) => {
+        .then(() => {
             card.deleteCard();
         })
         .finally(() => {
