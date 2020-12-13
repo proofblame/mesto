@@ -28,8 +28,6 @@ import PopupWithForm from "./scripts/PopupWithForm.js";
 import PopupWithSubmit from "./scripts/PopupWithSubmit.js";
 import UserInfo from "./scripts/UserInfo.js";
 import Api from "./scripts/Api.js";
-import { resolve } from "core-js/fn/promise";
-import { data } from "jquery";
 
 // Получение данных с сервера
 const api = new Api({
@@ -79,6 +77,9 @@ const instantiationCard = (item) => {
             resultApi.then((item) => {
                 card.setLikes(item.likes);
                 card.renderLikes();
+            })
+            .catch((err) => {
+                console.log(err);
             });
         },
         handleDeleteIconClick: () => {
@@ -97,6 +98,12 @@ const addNewCardHandler = () => {
         const newCard = instantiationCard(item);
         const cardElement = newCard.generateCard();
         container.prepend(cardElement);
+    })
+    .then(() => {
+        addPopup.close();
+    })
+    .catch((err) => {
+        console.log(err);
     });
 };
 
@@ -104,11 +111,12 @@ const addNewCardHandler = () => {
 const cardDeleteHandler = (card) => {
     api.deleteCard(card.getCardId())
         .then(() => {
+            popupWithSubmit.close();
             card.deleteCard();
         })
-        .finally(() => {
-            popupWithSubmit.close();
-        });
+        .catch((err) => {
+            console.log(err);
+        })
 };
 
 // Получение данных пользователя
@@ -116,6 +124,9 @@ api.getUserInfo().then((data) => {
     profileAuthor.textContent = data.name;
     profileJob.textContent = data.about;
     avatarAuthor.src = data.avatar;
+})
+.catch((err) => {
+    console.log(err);
 });
 
 // Редактирование данных пользователя
@@ -125,18 +136,26 @@ const editProfileHandler = () => {
         job: jobInput.value,
     };
     editPopup.savingButton("Сохранение...");
-    api.editUserInfo(profile.name, profile.job).finally(() => {
+    api.editUserInfo(profile.name, profile.job)
+    .then(() => {
         userInfo.setUserInfo(profile);
+        editPopup.close();
+    })
+    .catch((err) => {
+        console.log(err);
     });
 };
 
 // Редактирование аватара пользователя
 const editAvatarHandler = () => {
-    avatarAuthor.src = inputLinkAvatar.value;
     editAvatarPopup.savingButton("Сохранение...");
-
-    api.editUserAvatar(inputLinkAvatar.value).finally(() => {
+    api.editUserAvatar(inputLinkAvatar.value)
+    .then(() => {
+        avatarAuthor.src = inputLinkAvatar.value;
         editAvatarPopup.close();
+    })
+    .catch((err) => {
+        console.log(err);
     });
 };
 
