@@ -1,4 +1,4 @@
-import "./pages/index.css";
+import "./index.css";
 import {
     editProfileForm,
     nameInput,
@@ -10,24 +10,23 @@ import {
     container,
     settings,
     profileSelector,
-    userId,
     profileAuthor,
     profileJob,
     avatarAuthor,
     inputLinkAvatar,
     openAvatarButton,
     popupAvatarForm,
-} from "./scripts/constants.js";
+} from "../components/constants.js";
 
-import { Card } from "./scripts/Card.js";
-import { FormValidator } from "./scripts/FormValidator.js";
+import { Card } from "../components/Card.js";
+import { FormValidator } from "../components/FormValidator.js";
 
-import Section from "./scripts/Section.js";
-import PopupWithImage from "./scripts/PopupWithImage.js";
-import PopupWithForm from "./scripts/PopupWithForm.js";
-import PopupWithSubmit from "./scripts/PopupWithSubmit.js";
-import UserInfo from "./scripts/UserInfo.js";
-import Api from "./scripts/Api.js";
+import Section from "../components/Section.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithSubmit from "../components/PopupWithSubmit.js";
+import UserInfo from "../components/UserInfo.js";
+import Api from "../components/Api.js";
 
 // Получение данных с сервера
 const api = new Api({
@@ -36,6 +35,19 @@ const api = new Api({
         authorization: "45380a0b-d1c3-4f21-8b0c-7fe08b9cb145",
         "Content-Type": "application/json",
     },
+});
+
+let userId = null;
+
+// Получение данных пользователя
+api.getUserInfo().then((data) => {
+    profileAuthor.textContent = data.name;
+    profileJob.textContent = data.about;
+    avatarAuthor.src = data.avatar;
+    userId = data._id;
+})
+.catch((err) => {
+    console.log(err);
 });
 
 // Получение карточек с сервера
@@ -90,17 +102,16 @@ const instantiationCard = (item) => {
 };
 
 // Добавление новой карточки
-const addNewCardHandler = () => {
-    const inputTitle = document.querySelector(".popup__input_title").value;
-    const inputLink = document.querySelector(".popup__input_link").value;
+const addNewCardHandler = (card) => {
     addPopup.savingButton("Сохранение...");
-    api.addNewCard(inputTitle, inputLink).then((item) => {
+    api.addNewCard(card.name, card.link).then((item) => {
         const newCard = instantiationCard(item);
         const cardElement = newCard.generateCard();
         container.prepend(cardElement);
     })
     .then(() => {
         addPopup.close();
+        addPopup.savingButton("Сохранить")
     })
     .catch((err) => {
         console.log(err);
@@ -119,27 +130,14 @@ const cardDeleteHandler = (card) => {
         })
 };
 
-// Получение данных пользователя
-api.getUserInfo().then((data) => {
-    profileAuthor.textContent = data.name;
-    profileJob.textContent = data.about;
-    avatarAuthor.src = data.avatar;
-})
-.catch((err) => {
-    console.log(err);
-});
-
 // Редактирование данных пользователя
-const editProfileHandler = () => {
-    const profile = {
-        name: nameInput.value,
-        job: jobInput.value,
-    };
+const editProfileHandler = (item) => {
     editPopup.savingButton("Сохранение...");
-    api.editUserInfo(profile.name, profile.job)
+    api.editUserInfo(item.name, item.job)
     .then(() => {
-        userInfo.setUserInfo(profile);
+        userInfo.setUserInfo(item);
         editPopup.close();
+        editPopup.savingButton("Сохранить");
     })
     .catch((err) => {
         console.log(err);
@@ -153,6 +151,7 @@ const editAvatarHandler = () => {
     .then(() => {
         avatarAuthor.src = inputLinkAvatar.value;
         editAvatarPopup.close();
+        editAvatarPopup.savingButton("Сохранить");
     })
     .catch((err) => {
         console.log(err);

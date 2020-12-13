@@ -20,8 +20,6 @@ export const addCardButton = document.querySelector(".profile__add-button");
 export const CARD_ITEM_TEMPLATE_SELECTOR = ".elements__items";
 export const container = document.querySelector(".elements__list");
 
-export const userId = '7caad394df42d2d3080840db';
-
 // Settings
 export const settings = {
     formSelector: ".popup__form",
