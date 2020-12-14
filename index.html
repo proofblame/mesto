@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="pages/index.css"> -->
+    <title>Mesto</title>
+    <!-- <script type="module" src="index.js" defer></script> -->
+<link href="main.css" rel="stylesheet"></head>
+
+<body class="root">
+
+
+    <header class="header section">
+        <img class="header__logo" src="a307e1c403338846f8a4.svg" alt="Логотип Mesto Russia">
+    </header>
+
+    <main class="content section section__content">
+
+        <section class="profile section__profile">
+            <div class="profile__wrap">
+                <img src="9d6adefb1210b21ebdf8.png" alt="Портрет Жак-Ива Кусто"
+                    class="profile__avatar">
+                <img src="a086f758840ae814ecde.svg" alt="Смена аватара" class="profile__avatar-edit"> -->
+            </div>
+
+            <div class="profile__info">
+                <h1 class="profile__author section__title"></h1>
+                <button type="button" class="profile__edit-button buttons"></button>
+                <p class="profile__author-status section__subtitle"></p>
+            </div>
+            <button type="button" class="profile__add-button buttons"></button>
+        </section>
+
+        <section class="elements">
+            <ul class="elements__list">
+            </ul>
+        </section>
+    </main>
+
+    <footer class="footer section section__footer">
+        <p class="section__text">&copy; 2020 Mesto Russia</p>
+    </footer>
+
+    <section class="popup section__popup popup_type_popup-add-card">
+        <div class="popup__container">
+            <form name="new-card" class="popup__form popup-form_type_add-card" novalidate>
+                <h2 class="popup__heading section__subtitle">Новое место</h2>
+                <fieldset class="popup__fields">
+                    <input name="name" type="text" value="" placeholder="Название"
+                        class="popup__input popup__input_title" minlength="2" maxlength="30" required id="name-card"
+                        autocomplete="off">
+                    <span id="name-card-error" class="error"></span>
+                    <input name="link" type="url" value="" placeholder="Ссылка на картинку"
+                        class="popup__input popup__input_link" required id="link" autocomplete="off">
+                    <span class='error' id='link-error'></span>
+                </fieldset>
+                <input name="save-button" type="submit" value="Сохранить" class="popup__save-button">
+                <button name="close-button" type="button" value="" class="popup__close-button buttons"></button>
+            </form>
+        </div>
+    </section>
+
+    <section class="popup section__popup popup_type_popup-edit-profile">
+        <div class="popup__container">
+            <form name="edit-user" class="popup__form popup-form_type_edit-profile" novalidate>
+                <h2 class="popup__heading section__subtitle">Редактировать профиль</h2>
+                <fieldset class="popup__fields">
+                    <input name="name" type="text" value="" class="popup__input popup__input_name" id="user-name"
+                        minlength="2" maxlength="40" required autocomplete="off">
+                    <span id="user-name-error" class="error"></span>
+                    <input name="job" type="text" value="" class="popup__input popup__input_job" id="about"
+                        minlength="2" maxlength="200" required autocomplete="off">
+                    <span id="about-error" class="error"></span>
+                </fieldset>
+                <input name="save-button" type="submit" value="Сохранить" class="popup__save-button">
+                <button name="close-button" type="button" value="" class="popup__close-button buttons"></button>
+            </form>
+        </div>
+    </section>
+
+    <section class="popup section__popup popup_type_popup-gallery">
+        <div class="popup__gallery">
+            <img src="" alt="" class="popup__image">
+            <p class="popup__title"></p>
+            <button name="close-button" type="button" value="" class="popup__close-button buttons"></button>
+        </div>
+    </section>
+
+    <section class="popup section__popup popup_type_popup-confirm">
+        <div class="popup__container">
+            <form name="delete-confirm" class="popup__form popup-form_type_delete-confirm" novalidate>
+                <h2 class="popup__heading section__subtitle">Вы уверены?</h2>
+                <input name="save-button" type="submit" value="Да" class="popup__save-button">
+                <button name="close-button" type="button" value="" class="popup__close-button buttons"></button>
+            </form>
+        </div>
+    </section>
+
+    <section class="popup section__popup popup_type_popup-update-avatar">
+        <div class="popup__container">
+            <form name="update-user" class="popup__form popup-form_type_update-avatar" novalidate>
+                <h2 class="popup__heading section__subtitle">Обновить аватар</h2>
+                <fieldset class="popup__fields">
+                    <input name="link" type="url" value="" placeholder="Ссылка на картинку"
+                        class="popup__input popup__input_link" required id="link" autocomplete="off">
+                        <span class='error' id='link-error'></span>
+                </fieldset>
+                <input name="save-button" type="submit" value="Сохранить" class="popup__save-button">
+                <button name="close-button" type="button" value="" class="popup__close-button buttons"></button>
+            </form>
+        </div>
+    </section>
+
+    <template class="elements__items">
+        <li class="elements__item">
+            <figure class="element">
+                <img src="" alt="" class="element__image">
+                <div class="element__body">
+                    <p class="element__figcaption section__subtitle"></p>
+                    <div class="element__like-group">
+                        <button class="element__like-button buttons" type="button"></button>
+                        <div class="element__like-count"></div>
+                    </div>
+                </div>
+                <button class="element__delete-button buttons" type="button"></button>
+            </figure>
+        </li>
+    </template>
+<script src="main.js"></script></body>
+
+</html>
